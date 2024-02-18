@@ -412,13 +412,13 @@ The table \ref{tab:Regression} shows the performance of the three models:
         \hline
         Variable(s) & $R^2$ & MSE  \\
         \hline
-        PCA3 of OHE data & 0.0008168019203941279 & 0.004792302222049518 \\
-        PCA7 of SS+OHE data & 0.15039459943070976 & 0.004379609413259524  \\
-        PCA10 of SS+OE data & 0.2831168460970953 & 0.0036123333822026212  \\
-        PCA7 of MM+OHE data & 0.039120989555041064 & 0.00508502565711878 \\
-        PCA3 of MM+OE data & 0.005990838695393852 & 0.0052817304569184155 \\
-        the weighted sum of SS+OE+SKT data & 0.04664150224176111 & 0.00462250329177238757 \\
-        PCA1 to 15 of SS+OE data & 0.36606754095883587 & 0.0031440990025660277  \\
+        PCA1 of SS+OE data &  0.0018695316290635589 & 0.004876034524212843 \\
+        PCA2 of SS+OE data & 0.0007037263251143955 & 0.004874718247779077  \\
+        PCA10 of SS+OE data & 0.2805220334276459 & 0.003290378620238816  \\
+        PCA3 of SS+OE data & 0.0032548295987042675 & 0.004902679874153762 \\
+        PCA4 of SS+OE data & 0.00938766462088203 & 0.004869911461551409\\
+        PCA5 of SS+OE data & 0.004886260271825815 & 0.006140905221184515 \\
+        All used features & 0.3029115372754613 & 0.0032507916762117275  \\
         \hline
     \end{tabular}
     \caption{The performance of the three models}
@@ -450,5 +450,7 @@ After fitting a linear regression model using a categorical feature, we find tha
 \end{itemize}
 
 Nomrally, there are two ways to embed the categorical features into the linear regression model: one-hot encoding and ordinal encoding. If the data itself has a natural order, we may consider to use the ordinal encoding. Otherwise, we may consider to use the one-hot encoding. 
+
+
 
 \end{document}
