@@ -408,17 +408,17 @@ The table \ref{tab:Regression} shows the performance of the three models:
 \begin{table}[h!]
     \centering
     \small
-    \begin{tabular}{|c|c|c|}
+    \begin{tabular}{|c|c|c|c|}
         \hline
-        Variable(s) & $R^2$ & MSE  \\
+        Variable(s) & $R^2$ & Validation $R^2$ & MSE  \\
         \hline
-        PCA1 of SS+OE data &  0.0018695316290635589 & 0.004876034524212843 \\
-        PCA2 of SS+OE data & 0.0007037263251143955 & 0.004874718247779077  \\
-        PCA10 of SS+OE data & 0.2805220334276459 & 0.003290378620238816  \\
-        PCA3 of SS+OE data & 0.0032548295987042675 & 0.004902679874153762 \\
-        PCA4 of SS+OE data & 0.00938766462088203 & 0.004869911461551409\\
-        PCA5 of SS+OE data & 0.004886260271825815 & 0.006140905221184515 \\
-        All used features & 0.3029115372754613 & 0.0032507916762117275  \\
+        PCA1 of SS+OE data &  0.0018695316290635589 & 0.00494776279640774 & 0.004840345917165619 \\
+        PCA2 of SS+OE data & 0.0007037263251143955 & 0.005404304670441729 &  0.004838125108535304 \\
+        PCA10 of SS+OE data & 0.2805220334276459 & 0.32358168954322797 & 0.003290378620238816  \\
+        PCA6 of SS+OE data & 0.0031871125899599617 & 0.006365959135546939 & 0.004833447223204402 \\
+        PCA4 of SS+OE data & 0.00938766462088203 & 0.005735289304080737 & 0.004836515062288304\\
+        PCA5 of SS+OE data & 0.004886260271825815 & 0.0072159044603422595 & 0.004829312737366504 \\
+        All used features & 0.3029115372754613 & 0.34255926917072277 & 0.0031980638184292347  \\
         \hline
     \end{tabular}
     \caption{The performance of the three models}
@@ -445,8 +445,9 @@ Moreover, the absolute value of the weight could also means the importance of th
 After fitting a linear regression model using a categorical feature, we find that:
 
 \begin{itemize}
-    \item The $R^2$ is 0.0029046875364202585, which means that the model is not good.
-    \item The MSE is 0.005329683005780636, which is relatively high comparing to the MSE of the other models.
+    \item The $R^2$ is 0.002696133285668423, which means that the model is not good.
+    \item The MSE is 0.004833949055816101, which is relatively high comparing to the MSE of the other models.
+    \item The validation R^2 score is 0.00626279509076233.
 \end{itemize}
 
 Nomrally, there are two ways to embed the categorical features into the linear regression model: one-hot encoding and ordinal encoding. If the data itself has a natural order, we may consider to use the ordinal encoding. Otherwise, we may consider to use the one-hot encoding. 
