@@ -389,6 +389,8 @@ Since from the heatmap (Figure \ref{fig:heatmap}), we could find the fact that t
 
 From the variable importance line (Figure \ref{fig:pca}), we could find the fact that the first 6 principal components could explain around 90\% of the variance of the data. So we may consider to use the first 6 principal components to represent the data.
 
+\newpage
+
 % import the pic from ./pic/pca.png
 \begin{figure}[h!]
     \centering
@@ -447,11 +449,53 @@ After fitting a linear regression model using a categorical feature, we find tha
 \begin{itemize}
     \item The $R^2$ is 0.002696133285668423, which means that the model is not good.
     \item The MSE is 0.004833949055816101, which is relatively high comparing to the MSE of the other models.
-    \item The validation R^2 score is 0.00626279509076233.
+    \item The validation $R^2$ score is 0.00626279509076233.
 \end{itemize}
 
 Nomrally, there are two ways to embed the categorical features into the linear regression model: one-hot encoding and ordinal encoding. If the data itself has a natural order, we may consider to use the ordinal encoding. Otherwise, we may consider to use the one-hot encoding. 
 
 \subsection*{Q15.}
+
+The table \ref{tab:Feedforward} and figure \ref{fig:feedforward} shows the performance of the feedforward neural network model:
+
+\begin{table}[h!]
+    \centering
+    \small
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        H values & $R^2_1$ & $R^2_2$ & $R^2_3$ & mean $R^2$ & Std($R^2$) & $T_1$ & $T_2$ & $T_3$ & mean $T$ & Std($T$) \\
+        \hline
+        1 & 0.07566 & 0.05976 &  -0.00093 & 0.0448 & 0.0330 & 7.3014 & 2.2372 & 1.5578  & 3.6988 & 2.5625\\
+        8 & 0.29031 & 0.26985 & 0.24427 & 0.2681 & 0.0188 & 3.0492 & 4.47807 & 7.4026 & 4.9766 & 1.8119 \\
+        32 & 0.35848 & 0.25432 & 0.20716 & 0.2733 & 0.0632 & 4.6055 & 3.6451 & 5.1407 & 4.4638 & 0.6188 \\
+        128 & 0.35523 & 0.30468& 0.39429 & 0.3514 & 0.0367 & 4.3852 & 4.1018 & 3.9308 & 4.1393 & 0.1874 \\
+        \hline
+    \end{tabular}
+    \caption{The performance of the feedforward neural network model}
+    \label{tab:Feedforward}
+\end{table}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{./pic/R2_Score_vs_Hidden_Units.png}
+    \caption{The performance of the feedforward neural network model}
+    \label{fig:feedforward}
+\end{figure}
+
+
+\subsection*{Q16.}
+
+From the table \ref{tab:Feedforward}, we can find the best performance of the feedforward neural network model is when the number of hidden layers is 128.
+The best model has the highest validation $R^2$ equll to 0.39429, which means the model has the highest correlation between the dependent variable and the independent variable(s).
+However, the training time of the best model is 3.9308, which is relatively high comparing to the training time of the linear models.
+
+
+
+\newpage
+
+\section*{Part 4: Classification}
+
+\subsection*{Q17.}
+
 
 \end{document}
