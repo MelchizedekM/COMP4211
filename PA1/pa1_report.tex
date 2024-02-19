@@ -10,6 +10,7 @@
 \usepackage{graphicx}
 \usepackage{subcaption} 
 \usepackage{subcaption} 
+\usepackage{booktabs}
 
 
 \def\ra{\rightarrow}
@@ -497,6 +498,58 @@ However, the training time of the best model is 3.9308, which is relatively high
 
 \subsection*{Q17.}
 
+The teble \ref{tab:complete_model_performance} the performance of the models and the ROC curve (Figure \ref{fig:ROC}) shows the performance of the last model.
 
+\begin{table}[htbp]
+    \centering
+    \small
+    \begin{tabular}{ccccccc}
+    \toprule
+    Learning Rate & $\eta_0$ & Tolerance & Avg. Training Time (s) & Avg. F1 Score & Avg. Test Acc. & Avg. Train Acc. \\
+    \midrule
+    constant & 0.02 & 0.001 & 0.0 $\pm$ 0.0 & 0.823 $\pm$ 0.010 & 0.826 $\pm$ 0.011 & 0.792 $\pm$ 0.014 \\
+    constant & 0.01 & 0.001 & 0.016 $\pm$ 0.0002 & 0.850 $\pm$ 0.001 & 0.855 $\pm$ 0.001 & 0.821 $\pm$ 0.002 \\
+    constant & 0.02 & 0.01 & 0.0 $\pm$ 0.0 & 0.799 $\pm$ 0.027 & 0.802 $\pm$ 0.028 & 0.762 $\pm$ 0.036 \\
+    constant & 0.01 & 0.01 & 0.003 $\pm$ 0.005 & 0.823 $\pm$ 0.006 & 0.826 $\pm$ 0.006 & 0.787 $\pm$ 0.019 \\
+    optimal & 0.02 & 0.001 & 0.026 $\pm$ 0.008 & 0.825 $\pm$ 0.008 & 0.830 $\pm$ 0.006 & 0.798 $\pm$ 0.008 \\
+    optimal & 0.01 & 0.001 & 0.037 $\pm$ 0.008 & 0.825 $\pm$ 0.008 & 0.830 $\pm$ 0.006 & 0.798 $\pm$ 0.008 \\
+    optimal & 0.02 & 0.01 & 0.023 $\pm$ 0.007 & 0.813 $\pm$ 0.010 & 0.817 $\pm$ 0.012 & 0.787 $\pm$ 0.013 \\
+    optimal & 0.01 & 0.01 & 0.021 $\pm$ 0.007 & 0.813 $\pm$ 0.010 & 0.817 $\pm$ 0.012 & 0.787 $\pm$ 0.013 \\
+    \bottomrule
+    \end{tabular}
+    \caption{Model Performance Across Different Parameters}
+    \label{tab:complete_model_performance}
+\end{table}
+    
+% import the pic from ./pic/ROC_curve_set7.png
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{./pic/ROC_curve_set7.png}
+    \caption{ROC curve for the best model}
+    \label{fig:ROC}
+\end{figure}
+
+\subsection*{Q18.}
+
+From the table \ref{tab:complete_model_performance}, as the learning rate increases, the training time decreases, the F1 score and the testing accuracy decrease, and the training accuracy decreases.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Model Performance with Constant Learning Rate}
+    \begin{tabular}{cccccc}
+    \toprule
+    Learning Rate & Training Time (s) & F1 Score & Testing Accuracy & Training Accuracy \\
+    \midrule
+    constant & 0.0 & 0.765958 & 0.774011 & 0.723773 \\
+    constant & 0.010511 & 0.799790 & 0.806497 & 0.759449 \\
+    constant & 0.0 & 0.782188 & 0.788136 & 0.754504 \\
+    constant & 0.0 & 0.816410 & 0.817797 & 0.778877 \\
+    constant & 0.0 & 0.847873 & 0.853107 & 0.820205 \\
+    \bottomrule
+    \end{tabular}
+    \label{tab:model_performance_constant_lr}
+\end{table}
+    
 
 \end{document}
