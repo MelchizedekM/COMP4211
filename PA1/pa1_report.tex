@@ -12,6 +12,16 @@
 \usepackage{subcaption} 
 \usepackage{booktabs}
 \usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{array}
+
+\definecolor{codegray}{gray}{0.9}
+\lstset{
+    backgroundcolor=\color{codegray},
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single
+}
 
 
 \def\ra{\rightarrow}
@@ -76,7 +86,7 @@
         \hline
         Feature & Missing Values & Percentage of Missing Values \\
         \hline
-        29 & 0.819441\% \\
+        1 & 29 & 0.819441\% \\
         5 & 49 & 1.384572\% \\
         6 & 108 & 3.051710\% \\
         9 & 82 & 2.317039\% \\
@@ -300,6 +310,15 @@ If we can balence the weight of the outliers, we may not only reduce the negativ
 
 \subsection*{Q7.}
 
+After testing these methods, we can find the following insights:
+
+\begin{itemize}
+    \item mean - this method will fill the missing values with the mean of the feature column. This method will make the data more centered. However, this method may be influenced by the outliers. Therefore, this method may not be suitable for the data with outliers.
+    \item median - this method will fill the missing values with the median of the feature column. This method will make the data more robust to the outliers. However, this method may not be suitable for the data with a skewed distribution.
+    \item mode - this method will fill the missing values with the mode of the feature column. This method is suitable for categorical or discrete data to maintain representativeness, but it may not be ideal for continuous data due to potential distortions in the distribution
+    \item constant - this method will fill the missing values with a constant, which is chosen by us. This method may be suitable for the data with a specific meaning of the missing values. However, this method may have some potential risks, such as the distortion of the distribution.
+\end{itemize}
+
 \subsection*{Q8.}
 
 From the table \ref{tab:Standardize}, we can find the following insights:
@@ -391,7 +410,6 @@ Since from the heatmap (Figure \ref{fig:heatmap}), we could find the fact that t
 
 From the variable importance line (Figure \ref{fig:pca}), we could find the fact that the first 6 principal components could explain around 90\% of the variance of the data. So we may consider to use the first 6 principal components to represent the data.
 
-\newpage
 
 % import the pic from ./pic/pca.png
 \begin{figure}[h!]
@@ -569,7 +587,7 @@ The table \ref{tab:detailed_model_performance} shows the detailed performance of
     \centering
     \begin{tabular}{ccccccc}
     \toprule
-    H &  Train Time (s) & Accuracy & F1 & Mean Train Time & Mean Accuracy & Mean F1  \\
+    H &  Train Time & Accuracy & F1 & Train Time ($\overline{x}$ $\pm$ $\sigma$) & Accuracy Rate ($\overline{x}$ $\pm$ $\sigma$)& F1 ($\overline{x}$ $\pm$ $\sigma$)\\
     \midrule
     \multirow{3}{*}{1} & 0.0436 & 0.3037 & 0.1415 & \multirow{3}{*}{0.4346 $\pm$ 0.0253} & \multirow{3}{*}{0.4346 $\pm$ 0.1851} & \multirow{3}{*}{0.2849 $\pm$ 0.2028} \\
                        & 0.0929 & 0.3037 & 0.1415 & & \\
@@ -602,7 +620,127 @@ The figure \ref{fig:Performance_vs_H} shows the performance of the model across 
     \label{fig:Performance_vs_H}
 \end{figure}
 
-From the figure \ref{fig:Performance_vs_H}, we can find the best performance of the model is when the number of hidden layers is 32.
+\subsubsection*{Possible Reason:}
 
+One of the possible reasons for the gap between the testing accuracy rate and F score is that the testing accuracy rate is not sensitive to the imbalance of the positive data and the negative data, while the F1 score is sensitive to the imbalance of the positive data and the negative data.
+
+\subsection*{Q22.}
+
+From the table \ref{tab:detailed_model_performance}, we can find the best performance of the model has accuracy rate 0.8616 $\pm$ 0.0031 and F1 score 0.8567 $\pm$ 0.0014 when the number of hidden units is 128. This is higher than the Logistic Regression model, which has accuracy rate 0.855 $\pm$ 0.001 and F1 score 0.850 $\pm$ 0.001.
+However, the training time of the best model is 0.4346 $\pm$ 0.0702, which is relatively high comparing to the training time of the Logistic Regression model.
+
+\subsection*{Q23.}
+
+From the figure \ref{tab:complete_model_performance}, we can trivailly find that as the hidden units increases the training time, the F1 score, and the testing accuracy increase.
+One of the possible reasons could be that the more hidden units, the more complex the model, and the more complex the model, the more the model could fit the data.
+Also, due to the complexity of the model, we may need more time to train the model.
+
+\newpage
+
+\section*{Part 5: Performance Enhancement}
+
+\subsection*{Q24.}
+\begin{itemize}
+    \item Combination A - Classification - Accuracy: 0.8516949152542372, F1 Score: 0.8961424332344213
+    \item Combination A - Regression - R2 Score: 0.22421865294132537, MSE: 0.0037737215549623446
+\end{itemize}
+
+\subsection*{Q25.}
+\begin{itemize}
+    \item Combination B - Classification - Accuracy: 0.8615819209039548, F1 Score: 0.9031620553359684
+    \item Combination B - Regression - R2 Score: 0.3083562239584424, MSE: 0.0033644415864076804
+\end{itemize}
+
+\subsection*{Q26.}
+
+
+I apply a series of data preprocessing steps before fitting the data to neural network models. These steps are differentiated for classification and regression tasks as follows:
+
+\subsubsection*{Classification Pipeline}
+
+\begin{lstlisting}
+Numerical Features Preprocessing:
+    - Imputation: Missing values are imputed using constant zero for each column.
+    - Scaling: Features are scaled using StandardScaler.
+
+Ordinal Features Preprocessing:
+    - Imputation: Missing values are replaced with the most frequent value.
+    - Encoding: OrdinalEncoder encodes categories as integers, handling unknown categories by assigning -1.
+
+Nominal Features Preprocessing:
+    - Imputation: Missing values are replaced with the most frequent value.
+    - Encoding: OneHotEncoder is used for one-hot encoding, handling infrequent categories if they exist.
+
+\end{lstlisting}
+
+\subsubsection*{Regression Pipeline}
+
+\begin{lstlisting}
+Numerical Features Preprocessing:
+    - Imputation: Missing values are imputed with the median.
+    - Scaling: MinMaxScaler scales features to a range between 0 and 1.
+    - Dimensionality Reduction: PCA reduces the data to 10 principal components.
+
+Ordinal and Nominal Features Preprocessing:
+The steps for preprocessing ordinal and nominal features are identical to those in the classification pipeline, employing the most frequent imputation followed by appropriate encoding techniques.
+
+\end{lstlisting}
+
+\begin{itemize}
+\item Combination C - Classification - Accuracy: 0.8545197740112994, F1 Score: 0.8950050968399593
+\item Combination C - Regression - R2 Score: 0.3545329404264892, MSE: 0.003139818925739773
+\end{itemize}
+
+\subsection*{Q27.}
+
+
+The hyperparameter tuning was executed employing a grid search strategy on a three-hidden-layer feedforward neural network, considering the following hyperparameter grid:
+
+\subsubsection*{Explored Hyperparameters:}
+\begin{itemize}
+    \item Hidden Layer Sizes: (50, 50, 50), (100, 100, 100), (200, 200, 200)
+    \item Activation Functions: tanh, relu
+    \item Solvers: sgd, adam
+    \item Alpha: 0.0001, 0.001, 0.01
+    \item Learning Rates: constant, adaptive
+\end{itemize}
+
+These hyperparameters will give us a total of 72 different combinations to explore. 
+
+The grid search yielded the following optimal configuration and performance metrics:
+
+\subsubsection*{Optimal Hyperparameters:}
+\begin{itemize}
+    \item Activation Function: tanh
+    \item Alpha: 0.0001
+    \item Hidden Layer Sizes: (100, 100, 100)
+    \item Learning Rate: constant
+    \item Solver: adam
+\end{itemize}
+
+\textbf{Performance Metrics:}
+\begin{itemize}
+    \item Best Cross-Validation Accuracy: 0.8704
+    \item Test Set Accuracy: 0.8814
+    \item F1 Score: 0.8769
+\end{itemize}
+
+An evaluation of the hyperparameter space revealed the top five configurations based on mean validation accuracy, detailed as follows:
+
+\begin{table}[h!]
+    \begin{tabular}{@{}clccc@{}}
+        \toprule
+        Rank & Parameters & Mean Validation Accuracy & Std. Deviation \\
+        \midrule
+        1 & \begin{tabular}[c]{@{}l@{}}Activation: tanh, Alpha: 0.0001, \\ Hidden Layers: (50, 50, 50), \\ Learning Rate: constant, Solver: sgd\end{tabular} & 0.8425 & 0.0216 \\
+        2 & \begin{tabular}[c]{@{}l@{}}Activation: tanh, Alpha: 0.0001, \\ Hidden Layers: (50, 50, 50), \\ Learning Rate: constant, Solver: adam\end{tabular} & 0.8675 & 0.0092 \\
+        3 & \begin{tabular}[c]{@{}l@{}}Activation: tanh, Alpha: 0.0001, \\ Hidden Layers: (50, 50, 50), \\ Learning Rate: adaptive, Solver: sgd\end{tabular} & 0.8460 & 0.0196 \\
+        4 & \begin{tabular}[c]{@{}l@{}}Activation: tanh, Alpha: 0.0001, \\ Hidden Layers: (50, 50, 50), \\ Learning Rate: adaptive, Solver: adam\end{tabular} & 0.8675 & 0.0092 \\
+        5 & \begin{tabular}[c]{@{}l@{}}Activation: tanh, Alpha: 0.0001, \\ Hidden Layers: (100, 100, 100), \\ Learning Rate: constant, Solver: sgd\end{tabular} & 0.8506 & 0.0104 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Top 5 Hyperparameter Combinations}
+    \label{tab:hyperparameters}
+\end{table}
 
 \end{document}
