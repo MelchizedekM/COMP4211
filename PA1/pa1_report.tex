@@ -569,7 +569,7 @@ The table \ref{tab:detailed_model_performance} shows the detailed performance of
     \centering
     \begin{tabular}{ccccccc}
     \toprule
-    H &  Train Time (s) & Accuracy & F1 & Mean Train Time & Mean Accuracy & Mean F1  \\
+    H &  Train Time & Accuracy & F1 & Train Time ($\overline{x}$ $\pm$ $\sigma$) & Accuracy Rate ($\overline{x}$ $\pm$ $\sigma$)& F1 ($\overline{x}$ $\pm$ $\sigma$)\\
     \midrule
     \multirow{3}{*}{1} & 0.0436 & 0.3037 & 0.1415 & \multirow{3}{*}{0.4346 $\pm$ 0.0253} & \multirow{3}{*}{0.4346 $\pm$ 0.1851} & \multirow{3}{*}{0.2849 $\pm$ 0.2028} \\
                        & 0.0929 & 0.3037 & 0.1415 & & \\
@@ -602,7 +602,23 @@ The figure \ref{fig:Performance_vs_H} shows the performance of the model across 
     \label{fig:Performance_vs_H}
 \end{figure}
 
-From the figure \ref{fig:Performance_vs_H}, we can find the best performance of the model is when the number of hidden layers is 32.
+\subsubsection*{Possible Reason:}
 
+One of the possible reasons for the gap between the testing accuracy rate and F score is that the testing accuracy rate is not sensitive to the imbalance of the positive data and the negative data, while the F1 score is sensitive to the imbalance of the positive data and the negative data.
+
+\subsection*{Q22.}
+
+From the table \ref{tab:detailed_model_performance}, we can find the best performance of the model has accuracy rate 0.8616 $\pm$ 0.0031 and F1 score 0.8567 $\pm$ 0.0014 when the number of hidden units is 128. This is higher than the Logistic Regression model, which has accuracy rate 0.855 $\pm$ 0.001 and F1 score 0.850 $\pm$ 0.001.
+However, the training time of the best model is 0.4346 $\pm$ 0.0702, which is relatively high comparing to the training time of the Logistic Regression model.
+
+\subsection*{Q23.}
+
+From the figure \ref{tab:complete_model_performance}, we can trivailly find that as the hidden units increases the training time, the F1 score, and the testing accuracy increase.
+One of the possible reasons could be that the more hidden units, the more complex the model, and the more complex the model, the more the model could fit the data.
+Also, due to the complexity of the model, we may need more time to train the model.
+
+\newpage
+
+\section*{Part 5: Performance Enhancement}
 
 \end{document}
