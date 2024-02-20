@@ -11,6 +11,7 @@
 \usepackage{subcaption} 
 \usepackage{subcaption} 
 \usepackage{booktabs}
+\usepackage{multirow}
 
 
 \def\ra{\rightarrow}
@@ -75,7 +76,7 @@
         \hline
         Feature & Missing Values & Percentage of Missing Values \\
         \hline
-        1 & 29 & 0.819441\% \\
+        29 & 0.819441\% \\
         5 & 49 & 1.384572\% \\
         6 & 108 & 3.051710\% \\
         9 & 82 & 2.317039\% \\
@@ -466,7 +467,7 @@ The table \ref{tab:Feedforward} and figure \ref{fig:feedforward} shows the perfo
         \hline
         H values & $R^2_1$ & $R^2_2$ & $R^2_3$ & mean $R^2$ & Std($R^2$) & $T_1$ & $T_2$ & $T_3$ & mean $T$ & Std($T$) \\
         \hline
-        1 & 0.07566 & 0.05976 &  -0.00093 & 0.0448 & 0.0330 & 7.3014 & 2.2372 & 1.5578  & 3.6988 & 2.5625\\
+        0.07566 & 0.05976 &  -0.00093 & 0.0448 & 0.0330 & 7.3014 & 2.2372 & 1.5578  & 3.6988 & 2.5625\\
         8 & 0.29031 & 0.26985 & 0.24427 & 0.2681 & 0.0188 & 3.0492 & 4.47807 & 7.4026 & 4.9766 & 1.8119 \\
         32 & 0.35848 & 0.25432 & 0.20716 & 0.2733 & 0.0632 & 4.6055 & 3.6451 & 5.1407 & 4.4638 & 0.6188 \\
         128 & 0.35523 & 0.30468& 0.39429 & 0.3514 & 0.0367 & 4.3852 & 4.1018 & 3.9308 & 4.1393 & 0.1874 \\
@@ -523,6 +524,9 @@ The teble \ref{tab:complete_model_performance} the performance of the models and
     
 % import the pic from ./pic/ROC_curve_set7.png
 
+
+\subsection*{Q18.}
+
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{./pic/ROC_curve_set7.png}
@@ -530,13 +534,18 @@ The teble \ref{tab:complete_model_performance} the performance of the models and
     \label{fig:ROC}
 \end{figure}
 
-\subsection*{Q18.}
+From the figure \ref{fig:ROC}, we can find the AUC of the ROC curve is 0.88. 
+
+Since if we need to make sure the balence of false positive rate and false negative rate to avoid the bias because of the inbalance of positive data and negative data, we may consider to use the AUC of the ROC curve to evaluate the performance of the model. The higher the AUC, the better the performance of the model.
+
+
+    
+\subsection*{Q19.}
 
 From the table \ref{tab:complete_model_performance}, as the learning rate increases, the training time decreases, the F1 score and the testing accuracy decrease, and the training accuracy decreases.
 
 \begin{table}[htbp]
     \centering
-    \caption{Model Performance with Constant Learning Rate}
     \begin{tabular}{cccccc}
     \toprule
     Learning Rate & Training Time (s) & F1 Score & Testing Accuracy & Training Accuracy \\
@@ -548,8 +557,52 @@ From the table \ref{tab:complete_model_performance}, as the learning rate increa
     constant & 0.0 & 0.847873 & 0.853107 & 0.820205 \\
     \bottomrule
     \end{tabular}
+    \caption{Model Performance with Constant Learning Rate}
     \label{tab:model_performance_constant_lr}
 \end{table}
+
+\subsection*{Q20.}
+
+The table \ref{tab:detailed_model_performance} shows the detailed performance of the model across different hidden units.
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{ccccccc}
+    \toprule
+    H &  Train Time (s) & Accuracy & F1 & Mean Train Time & Mean Accuracy & Mean F1  \\
+    \midrule
+    \multirow{3}{*}{1} & 0.0436 & 0.3037 & 0.1415 & \multirow{3}{*}{0.4346 $\pm$ 0.0253} & \multirow{3}{*}{0.4346 $\pm$ 0.1851} & \multirow{3}{*}{0.2849 $\pm$ 0.2028} \\
+                       & 0.0929 & 0.3037 & 0.1415 & & \\
+                       & 0.1007 & 0.6963 & 0.5717 & & \\
+    \midrule
+    \multirow{3}{*}{8} & 0.3240 & 0.8588 & 0.8520 & \multirow{3}{*}{0.4346 $\pm$ 0.0887} & \multirow{3}{*}{0.8395 $\pm$ 0.0156} & \multirow{3}{*}{0.8312 $\pm$ 0.0178} \\
+                       & 0.1523 & 0.8390 & 0.8332 & & \\
+                       & 0.1230 & 0.8206 & 0.8085 & & \\
+    \midrule
+    \multirow{3}{*}{32} & 0.3688 & 0.8630 & 0.8571 & \multirow{3}{*}{0.4346 $\pm$ 0.0169} & \multirow{3}{*}{0.8611 $\pm$ 0.0070} & \multirow{3}{*}{0.8551 $\pm$ 0.0085} \\
+                        & 0.3927 & 0.8517 & 0.8438 & & \\
+                        & 0.4100 & 0.8686 & 0.8643 & & \\
+    \midrule
+    \multirow{3}{*}{128} & 0.7175 & 0.8602 & 0.8553 & \multirow{3}{*}{0.4346 $\pm$ 0.0702} & \multirow{3}{*}{0.8616 $\pm$ 0.0031} & \multirow{3}{*}{0.8567 $\pm$ 0.0014} \\
+                         & 0.6443 & 0.8588 & 0.8563 & & \\
+                         & 0.8156 & 0.8658 & 0.8586 & & \\
+    \bottomrule
+    \end{tabular}
+    \caption{Detailed Model Performance Across Trials with Different Hidden Units}
+    \label{tab:detailed_model_performance}
+\end{table}
     
+\subsection*{Q21.}
+
+The figure \ref{fig:Performance_vs_H} shows the performance of the model across different hidden units.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{./pic/Combined_Performance_vs_H.png}
+    \caption{ROC curve for the best model}
+    \label{fig:Performance_vs_H}
+\end{figure}
+
+From the figure \ref{fig:Performance_vs_H}, we can find the best performance of the model is when the number of hidden layers is 32.
+
 
 \end{document}
