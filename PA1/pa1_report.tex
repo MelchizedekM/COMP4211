@@ -73,8 +73,8 @@
 
 \subsection*{Q1.}
 \begin{itemize}
-    \item The training set contains 3539 samples(instances), each with 31 features and 2 labels.
-    \item The 1-st to 6-th, 8-th to 14-th and 16-th features are categorical, while the rest are numerical.
+    \item The training set contains 3539 samples(instances), each with 31 features (exclude two labels, `regression labels' and `classification labels') and 2 labels (`regression labels' and `classification labels').
+    \item The `C0' to `C5', `C7' to `C13' and `C15' features are categorical, while the rest are numerical.
 \end{itemize}
 
 \subsection*{Q2.}
@@ -86,21 +86,21 @@
         \hline
         Feature & Missing Values & Percentage of Missing Values \\
         \hline
-        1 & 29 & 0.819441\% \\
-        5 & 49 & 1.384572\% \\
-        6 & 108 & 3.051710\% \\
-        9 & 82 & 2.317039\% \\
-        10 & 142 & 4.012433\% \\
-        12 & 158 & 4.464538\% \\
-        13 & 170 & 4.803617\% \\
-        14 & 120 & 3.390788\% \\
-        16 & 138 & 3.899407\% \\
-        18 & 148 & 4.181972\% \\
-        21 & 171 & 4.831873\% \\
-        23 & 16 & 0.452105\% \\
-        24 & 28 & 0.791184\% \\
-        26 & 144 & 4.068946\% \\
-        30 & 160 & 4.521051\% \\
+        C0 & 29 & 0.819441\% \\
+        C4 & 49 & 1.384572\% \\
+        C5 & 108 & 3.051710\% \\
+        C8 & 82 & 2.317039\% \\
+        C9 & 142 & 4.012433\% \\
+        C11 & 158 & 4.464538\% \\
+        C12 & 170 & 4.803617\% \\
+        C13 & 120 & 3.390788\% \\
+        C15 & 138 & 3.899407\% \\
+        C17 & 148 & 4.181972\% \\
+        C20 & 171 & 4.831873\% \\
+        C22 & 16 & 0.452105\% \\
+        C23 & 28 & 0.791184\% \\
+        C25 & 144 & 4.068946\% \\
+        C29 & 160 & 4.521051\% \\
         \hline
     \end{tabular}
     \newline
@@ -108,19 +108,23 @@
 \end{center}
 
 \subsubsection*{The effect of missing values on the distribution of the features:}
-Since the missing values may make the information less compheresive, which may lead more bias. These missing values may make the distribution of the features biased, and may also affect the performance of the model. 
+Since the missing values may make the information less compheresive, which may lead more bias. 
+These missing values may make the distribution of the features biased, 
+and may also affect the performance of the model. 
+Moreover, since some algorithms may not handle the missing values, these missing values may also affect the performance of the model.
+
 
 \subsection*{Q3.}
 \subsubsection*{Numerical:}
-The 15-th, 17-th 19-th, 20-th, 22-rd, 25-th and 27-th features are discrete. The rest are continuous. 
+The `C6', `C20' and `C26' features are continuous. The rest are discrete. 
 \begin{center}
     \begin{tabular}{|c|c|c|c|c|}
         \hline
         Feature & Mean & Standard Deviation & Median & Range\\
         \hline
-        First N-Feature (7-th)  & 66.324696  & 6.619953 & 66.55& 47.5~95 \\
-        Second N-Feature (15-th)  & 23.204012 & 7.427675 & 20 & 17~70 \\
-        Third N-Feature (17-th)  & 0.683526 & 2.275012 & 0 & 0~20 \\
+        First N-Feature (C6)  & 66.324696  & 6.619953 & 66.55& 47.5~95 \\
+        Second N-Feature (C14)  & 23.204012 & 7.427675 & 20 & 17~70 \\
+        Third N-Feature (C16)  & 0.683526 & 2.275012 & 0 & 0~20 \\
         \hline
     \end{tabular}
 \end{center}
@@ -134,9 +138,9 @@ Boxplot for the three numerical features:
 \end{figure}
 
 \subsubsection*{Categorical:}
-Binary features indexes (from 1): 5, 9, 10, 11, 12, 13, 14, 16.\\
-Nominal features indexes (from 1): 1, 2, 4, 8.\\ 
-Ordinal features indexes (from 1): 3, 6.\\
+Binary features indexes: C4, C8, C9, C10, C11, C12, C13, C15.\\
+Nominal features indexes: C0, C1, C3, C7.\\ 
+Ordinal features indexes: C2, C5.\\
 
 
 
@@ -310,13 +314,22 @@ If we can balence the weight of the outliers, we may not only reduce the negativ
 
 \subsection*{Q7.}
 
-After testing these methods, we can find the following insights:
+\textbf{After testing these methods, we can find the following feature distribution and model performance:}
 
 \begin{itemize}
-    \item mean - this method will fill the missing values with the mean of the feature column. This method will make the data more centered. However, this method may be influenced by the outliers. Therefore, this method may not be suitable for the data with outliers.
-    \item median - this method will fill the missing values with the median of the feature column. This method will make the data more robust to the outliers. However, this method may not be suitable for the data with a skewed distribution.
-    \item mode - this method will fill the missing values with the mode of the feature column. This method is suitable for categorical or discrete data to maintain representativeness, but it may not be ideal for continuous data due to potential distortions in the distribution
-    \item constant - this method will fill the missing values with a constant, which is chosen by us. This method may be suitable for the data with a specific meaning of the missing values. However, this method may have some potential risks, such as the distortion of the distribution.
+    \item Mean - this method will fill the missing values with the mean of the feature column. This method will make the data more centered. However, this method may be influenced by the outliers. Therefore, this method may not be suitable for the data with outliers.
+    \item Median - this method will fill the missing values with the median of the feature column. This method will make the data more robust to the outliers. However, this method may not be suitable for the data with a skewed distribution.
+    \item Mode - this method will fill the missing values with the most frequent value of the feature column. This method is suitable for categorical or discrete data to maintain representativeness, but it may not be ideal for continuous data due to potential distortions in the distribution
+    \item Constant - this method will fill the missing values with a constant, which is chosen by us. This method may be suitable for the data with a specific meaning of the missing values. However, this method may have some potential risks, such as the distortion of the distribution.
+\end{itemize}
+
+\textbf{After testing these methods, we can find what imputation should be used and when as following:}
+
+\begin{itemize}
+    \item If the feature column has a normal distribution and the number of outliers is small, we may consider to use the Mean imputation.
+    \item If the feature column has a skewed distribution or have too many outliers, we may consider to use the Median imputation.
+    \item If the feature column is a categorical or discrete feature, we may consider to use the Mode imputation.
+    \item If the feature column has a specific meaning of the missing values, we may consider to use the Constant imputation.
 \end{itemize}
 
 \subsection*{Q8.}
@@ -485,7 +498,7 @@ The table \ref{tab:Feedforward} and figure \ref{fig:feedforward} shows the perfo
         \hline
         H values & $R^2_1$ & $R^2_2$ & $R^2_3$ & mean $R^2$ & Std($R^2$) & $T_1$ & $T_2$ & $T_3$ & mean $T$ & Std($T$) \\
         \hline
-        0.07566 & 0.05976 &  -0.00093 & 0.0448 & 0.0330 & 7.3014 & 2.2372 & 1.5578  & 3.6988 & 2.5625\\
+        1 & 0.07566 & 0.05976 &  -0.00093 & 0.0448 & 0.0330 & 7.3014 & 2.2372 & 1.5578  & 3.6988 & 2.5625\\
         8 & 0.29031 & 0.26985 & 0.24427 & 0.2681 & 0.0188 & 3.0492 & 4.47807 & 7.4026 & 4.9766 & 1.8119 \\
         32 & 0.35848 & 0.25432 & 0.20716 & 0.2733 & 0.0632 & 4.6055 & 3.6451 & 5.1407 & 4.4638 & 0.6188 \\
         128 & 0.35523 & 0.30468& 0.39429 & 0.3514 & 0.0367 & 4.3852 & 4.1018 & 3.9308 & 4.1393 & 0.1874 \\
@@ -518,6 +531,7 @@ However, the training time of the best model is 3.9308, which is relatively high
 \subsection*{Q17.}
 
 The teble \ref{tab:complete_model_performance} the performance of the models and the ROC curve (Figure \ref{fig:ROC}) shows the performance of the last model.
+According to the user guide, when we use the command "optimal" the learning rate, $\iterate_0$, will be optimized by the model itself. Therefore, the change of it will not influence the performance of the model, which is consistent with the table \ref{tab:complete_model_performance}.
 
 \begin{table}[htbp]
     \centering
@@ -536,7 +550,7 @@ The teble \ref{tab:complete_model_performance} the performance of the models and
     optimal & 0.01 & 0.01 & 0.021 $\pm$ 0.007 & 0.813 $\pm$ 0.010 & 0.817 $\pm$ 0.012 & 0.787 $\pm$ 0.013 \\
     \bottomrule
     \end{tabular}
-    \caption{Model Performance Across Different Parameters}
+    \caption{Model Performance Across Different Parameters  (all the data satifies this $\overline{x}$ $\pm$ $\sigma$ formular)}
     \label{tab:complete_model_performance}
 \end{table}
     
@@ -568,11 +582,11 @@ From the table \ref{tab:complete_model_performance}, as the learning rate increa
     \toprule
     Learning Rate & Training Time (s) & F1 Score & Testing Accuracy & Training Accuracy \\
     \midrule
-    constant & 0.0 & 0.765958 & 0.774011 & 0.723773 \\
-    constant & 0.010511 & 0.799790 & 0.806497 & 0.759449 \\
-    constant & 0.0 & 0.782188 & 0.788136 & 0.754504 \\
-    constant & 0.0 & 0.816410 & 0.817797 & 0.778877 \\
-    constant & 0.0 & 0.847873 & 0.853107 & 0.820205 \\
+    0.05 & 0.0 & 0.765958 & 0.774011 & 0.723773 \\
+    0.04 & 0.010511 & 0.799790 & 0.806497 & 0.759449 \\
+    0.03 & 0.0 & 0.782188 & 0.788136 & 0.754504 \\
+    0.02 & 0.0 & 0.816410 & 0.817797 & 0.778877 \\
+    0.01 & 0.0 & 0.847873 & 0.853107 & 0.820205 \\
     \bottomrule
     \end{tabular}
     \caption{Model Performance with Constant Learning Rate}
@@ -616,7 +630,7 @@ The figure \ref{fig:Performance_vs_H} shows the performance of the model across 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{./pic/Combined_Performance_vs_H.png}
-    \caption{ROC curve for the best model}
+    \caption{Performance of the model across different hidden units}
     \label{fig:Performance_vs_H}
 \end{figure}
 
