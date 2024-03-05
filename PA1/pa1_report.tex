@@ -655,14 +655,14 @@ Also, due to the complexity of the model, we may need more time to train the mod
 
 \subsection*{Q24.}
 \begin{itemize}
-    \item Combination A - Classification - Accuracy: 0.8516949152542372, F1 Score: 0.8961424332344213
-    \item Combination A - Regression - R2 Score: 0.22421865294132537, MSE: 0.0037737215549623446
+    \item Combination A - Classification - Accuracy: 0.8502824858757062, F1 Score: 0.893574297188755
+    \item Combination A - Regression - R2 Score: 0.30468445326826177, MSE: 0.003382302598728934
 \end{itemize}
 
 \subsection*{Q25.}
 \begin{itemize}
-    \item Combination B - Classification - Accuracy: 0.8615819209039548, F1 Score: 0.9031620553359684
-    \item Combination B - Regression - R2 Score: 0.3083562239584424, MSE: 0.0033644415864076804
+    \item Combination B - Classification - Accuracy: 0.8559322033898306, F1 Score: 0.9009708737864077
+    \item Combination B - Regression - R2 Score: 0.2979528069556907, MSE: 0.0034150481125086187
 \end{itemize}
 
 \subsection*{Q26.}
@@ -678,7 +678,7 @@ Numerical Features Preprocessing:
     - Scaling: Features are scaled using StandardScaler.
 
 Ordinal Features Preprocessing:
-    - Imputation: Missing values are replaced with the most frequent value.
+    - Imputation: Missing values are replaced with an unique constant.
     - Encoding: OrdinalEncoder encodes categories as integers, handling unknown categories by assigning -1.
 
 Nominal Features Preprocessing:
@@ -695,14 +695,19 @@ Numerical Features Preprocessing:
     - Scaling: MinMaxScaler scales features to a range between 0 and 1.
     - Dimensionality Reduction: PCA reduces the data to 10 principal components.
 
-Ordinal and Nominal Features Preprocessing:
-The steps for preprocessing ordinal and nominal features are identical to those in the classification pipeline, employing the most frequent imputation followed by appropriate encoding techniques.
+Ordinal Features Preprocessing:
+    - Imputation: Missing values are replaced with the most frequent value.
+    - Encoding: OrdinalEncoder encodes categories as integers, handling unknown categories by assigning -1.
+
+Nominal Features Preprocessing:
+    - Imputation: Missing values are replaced with the most frequent value.
+    - Encoding: OneHotEncoder is used for one-hot encoding, handling infrequent categories if they exist.
 
 \end{lstlisting}
 
 \begin{itemize}
-\item Combination C - Classification - Accuracy: 0.8545197740112994, F1 Score: 0.8950050968399593
-\item Combination C - Regression - R2 Score: 0.3545329404264892, MSE: 0.003139818925739773
+\item Combination C - Classification - Accuracy: 0.8587570621468926, F1 Score: 0.9034749034749034
+\item Combination C - Regression - R2 Score: 0.3743917925230793, MSE: 0.00304321724989664
 \end{itemize}
 
 \subsection*{Q27.}
@@ -712,31 +717,31 @@ The hyperparameter tuning was executed employing a grid search strategy on a thr
 
 \subsubsection*{Explored Hyperparameters:}
 \begin{itemize}
-    \item Hidden Layer Sizes: (50, 50, 50), (100, 100, 100), (200, 200, 200)
+    \item Hidden Layer Sizes: (128, 128, 128)
     \item Activation Functions: tanh, relu
     \item Solvers: sgd, adam
     \item Alpha: 0.0001, 0.001, 0.01
     \item Learning Rates: constant, adaptive
 \end{itemize}
 
-These hyperparameters will give us a total of 72 different combinations to explore. 
+These hyperparameters will give us a total of 24 different combinations to explore. 
 
 The grid search yielded the following optimal configuration and performance metrics:
 
 \subsubsection*{Optimal Hyperparameters:}
 \begin{itemize}
     \item Activation Function: tanh
-    \item Alpha: 0.0001
-    \item Hidden Layer Sizes: (100, 100, 100)
+    \item Alpha: 0.01
+    \item Hidden Layer Sizes: (128, 128, 128)
     \item Learning Rate: constant
     \item Solver: adam
 \end{itemize}
 
 \textbf{Performance Metrics:}
 \begin{itemize}
-    \item Best Cross-Validation Accuracy: 0.8704
-    \item Test Set Accuracy: 0.8814
-    \item F1 Score: 0.8769
+    \item Best Cross-Validation Accuracy: 0.8671814334947433
+    \item Test Set Accuracy: 0.8983050847457628
+    \item F1 Score: 0.8961675425899287
 \end{itemize}
 
 An evaluation of the hyperparameter space revealed the top five configurations based on mean validation accuracy, detailed as follows:
@@ -746,11 +751,11 @@ An evaluation of the hyperparameter space revealed the top five configurations b
         \toprule
         Rank & Parameters & Mean Validation Accuracy & Std. Deviation \\
         \midrule
-        1 & \begin{tabular}[c]{@{}l@{}}Activation: tanh, Alpha: 0.0001, \\ Hidden Layers: (50, 50, 50), \\ Learning Rate: constant, Solver: sgd\end{tabular} & 0.8425 & 0.0216 \\
-        2 & \begin{tabular}[c]{@{}l@{}}Activation: tanh, Alpha: 0.0001, \\ Hidden Layers: (50, 50, 50), \\ Learning Rate: constant, Solver: adam\end{tabular} & 0.8675 & 0.0092 \\
-        3 & \begin{tabular}[c]{@{}l@{}}Activation: tanh, Alpha: 0.0001, \\ Hidden Layers: (50, 50, 50), \\ Learning Rate: adaptive, Solver: sgd\end{tabular} & 0.8460 & 0.0196 \\
-        4 & \begin{tabular}[c]{@{}l@{}}Activation: tanh, Alpha: 0.0001, \\ Hidden Layers: (50, 50, 50), \\ Learning Rate: adaptive, Solver: adam\end{tabular} & 0.8675 & 0.0092 \\
-        5 & \begin{tabular}[c]{@{}l@{}}Activation: tanh, Alpha: 0.0001, \\ Hidden Layers: (100, 100, 100), \\ Learning Rate: constant, Solver: sgd\end{tabular} & 0.8506 & 0.0104 \\
+        1 & \begin{tabular}[c]{@{}l@{}}Activation: tanh, Alpha: 0.0001, \\ Hidden Layers: (128, 128, 128), \\ Learning Rate: constant, Solver: sgd\end{tabular} & 0.8534 & 0.0236 \\
+        2 & \begin{tabular}[c]{@{}l@{}}Activation: tanh, Alpha: 0.0001, \\ Hidden Layers: (128, 128, 128), \\ Learning Rate: constant, Solver: adam\end{tabular} & 0.8668 & 0.0119 \\
+        3 & \begin{tabular}[c]{@{}l@{}}Activation: tanh, Alpha: 0.0001, \\ Hidden Layers: (128, 128, 128), \\ Learning Rate: adaptive, Solver: sgd\end{tabular} & 0.8583 & 0.0142 \\
+        4 & \begin{tabular}[c]{@{}l@{}}Activation: tanh, Alpha: 0.0001, \\ Hidden Layers: (128, 128, 128), \\ Learning Rate: adaptive, Solver: adam\end{tabular} & 0.8668 & 0.0119 \\
+        5 & \begin{tabular}[c]{@{}l@{}}Activation: tanh, Alpha: 0.001, \\ Hidden Layers: (128, 128, 128), \\ Learning Rate: constant, Solver: sgd\end{tabular} & 0.8534 & 0.0236 \\
         \bottomrule
     \end{tabular}
     \caption{Top 5 Hyperparameter Combinations}
