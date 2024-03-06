@@ -73,8 +73,10 @@
 
 \subsection*{Q1.}
 \begin{itemize}
-    \item The training set contains 3539 samples(instances), each with 31 features (exclude two labels, `regression labels' and `classification labels') and 2 labels (`regression labels' and `classification labels').
-    \item The `C0' to `C5', `C7' to `C13' and `C15' features are categorical, while the rest are numerical.
+    \item The training set contains 3539 samples(instances), each with 31 features (exclude two labels, `regression targets' and `classification targets') and 2 labels (`regression labels' and `classification labels').
+    \item Categorical features: C0, C1, C2, C3, C4, C5, C7, C8, C9, C10, C11, C12, C13, C15.
+    \item Numerical Features: C6, C14, C16, C17, C18, C19, C20, C21, C22, C23, C24, C25, C26,
+    C27, C28, C29, C30.
 \end{itemize}
 
 \subsection*{Q2.}
@@ -138,9 +140,9 @@ Boxplot for the three numerical features:
 \end{figure}
 
 \subsubsection*{Categorical:}
-Binary features indexes: C4, C8, C9, C10, C11, C12, C13, C15.\\
-Nominal features indexes: C0, C1, C3, C7.\\ 
-Ordinal features indexes: C2, C5.\\
+Binary features: C4, C8, C9, C10, C11, C12, C13, C15.\\
+Nominal features: C0, C1, C3, C7.\\ 
+Ordinal features: C2, C5.\\
 
 
 
@@ -226,7 +228,7 @@ Ordinal features indexes: C2, C5.\\
 
 \subsection*{Q4.}
 \subsubsection*{Detection:}
-Z-Score:\\
+Z-Score ($z>3$):\\
 \begin{itemize}
     \item Outliers Index of First N-Feature (7-th): 59,  176,  207,  342,  971, 1156, 1840, 2272, 2282, 2447, 2448, 2535, 2624, 3259, 3300, 3373, 3487, 3490
     \item Outliers Index of Second N-Feature (15-th): 99,  252,  278,  280,  291,  394,  403,  432,  513,  553,  607, 
@@ -307,6 +309,8 @@ We can also use PCA, UMAP or tSEN to reduce the dimensionality of these features
 If we can integrate the highly correlated features, we may not only avoid the multicollinearity but also reduce the dimensionality of the data. However, the integration of the features may also lead to the loss of information.
 
 If we can balence the weight of the outliers, we may not only reduce the negative influence of the outliers but also keep the information of the outliers. However, the balence of the outliers may also lead to the loss of information.
+
+If we can reduce the dimensionality of the data using some feature engineering, we may not only reduce the complexity of the model but also avoid the multicollinearity. Also it can reduce the possibility of overfitting.
 
 \newpage
 
@@ -466,6 +470,7 @@ Since the $R^2$ reflect the proportion of the variance in the dependent variable
 
 From the table \ref{tab:Regression}, we can find the $R^2$ and MSE satifies a negative correlation, i.e., the higher the $R^2$, the lower the MSE. 
 
+Moreover, since there will be more information in six principal components than in one principal component, the $R^2$ and MSE of the model using six principal components are higher than the $R^2$ and MSE of the model using only one principal component.
 
 \subsection*{Q14.}
 
@@ -477,7 +482,7 @@ Moreover, the absolute value of the weight could also means the importance of th
 
 \subsubsection*{Repeating Q12, Q13 using a categorical feature:}
 
-After fitting a linear regression model using a categorical feature, we find that:
+After fitting a linear regression model using a categorical feature (C1), we find that:
 
 \begin{itemize}
     \item The $R^2$ is 0.002696133285668423, which means that the model is not good.
@@ -568,13 +573,17 @@ According to the user guide, when we use the command "optimal" the learning rate
 
 From the figure \ref{fig:ROC}, we can find the AUC of the ROC curve is 0.88. 
 
+The AUC is the area under the ROC curve.
+
 Since if we need to make sure the balence of false positive rate and false negative rate to avoid the bias because of the inbalance of positive data and negative data, we may consider to use the AUC of the ROC curve to evaluate the performance of the model. The higher the AUC, the better the performance of the model.
 
+However, the ROC gives more information than AUC, such as the trade-off between the true positive rate and the false positive rate. Therefore, we may also consider to use the ROC curve to evaluate the performance of the model.
 
+Normally, the most top-left point of the ROC curve is the best point, which means a relatively higher true positive rate and a relatively lower false positive rate.
     
 \subsection*{Q19.}
 
-From the table \ref{tab:complete_model_performance}, as the learning rate increases, the training time decreases, the F1 score and the testing accuracy decrease, and the training accuracy decreases.
+From the table \ref{tab:model_performance_constant_lr}, as the learning rate increases, the training time decreases, the F1 score and the testing accuracy decrease, and the training accuracy decreases.
 
 \begin{table}[htbp]
     \centering
@@ -603,21 +612,21 @@ The table \ref{tab:detailed_model_performance} shows the detailed performance of
     \toprule
     H &  Train Time & Accuracy & F1 & Train Time ($\overline{x}$ $\pm$ $\sigma$) & Accuracy Rate ($\overline{x}$ $\pm$ $\sigma$)& F1 ($\overline{x}$ $\pm$ $\sigma$)\\
     \midrule
-    \multirow{3}{*}{1} & 0.0436 & 0.3037 & 0.1415 & \multirow{3}{*}{0.4346 $\pm$ 0.0253} & \multirow{3}{*}{0.4346 $\pm$ 0.1851} & \multirow{3}{*}{0.2849 $\pm$ 0.2028} \\
+    \multirow{3}{*}{1} & 0.0900 & 0.3037 & 0.1415 & \multirow{3}{*}{0.0919 $\pm$ 0.0013} & \multirow{3}{*}{0.4346 $\pm$ 0.1851} & \multirow{3}{*}{0.2849 $\pm$ 0.2028} \\
                        & 0.0929 & 0.3037 & 0.1415 & & \\
-                       & 0.1007 & 0.6963 & 0.5717 & & \\
+                       & 0.0927 & 0.6963 & 0.5717 & & \\
     \midrule
-    \multirow{3}{*}{8} & 0.3240 & 0.8588 & 0.8520 & \multirow{3}{*}{0.4346 $\pm$ 0.0887} & \multirow{3}{*}{0.8395 $\pm$ 0.0156} & \multirow{3}{*}{0.8312 $\pm$ 0.0178} \\
-                       & 0.1523 & 0.8390 & 0.8332 & & \\
-                       & 0.1230 & 0.8206 & 0.8085 & & \\
+    \multirow{3}{*}{8} & 0.3188 & 0.8588 & 0.8520 & \multirow{3}{*}{0.1970 $\pm$ 0.0869} & \multirow{3}{*}{0.8395 $\pm$ 0.0156} & \multirow{3}{*}{0.8312 $\pm$ 0.0178} \\
+                       & 0.1505 & 0.8390 & 0.8332 & & \\
+                       & 0.1216 & 0.8206 & 0.8085 & & \\
     \midrule
-    \multirow{3}{*}{32} & 0.3688 & 0.8630 & 0.8571 & \multirow{3}{*}{0.4346 $\pm$ 0.0169} & \multirow{3}{*}{0.8611 $\pm$ 0.0070} & \multirow{3}{*}{0.8551 $\pm$ 0.0085} \\
-                        & 0.3927 & 0.8517 & 0.8438 & & \\
-                        & 0.4100 & 0.8686 & 0.8643 & & \\
+    \multirow{3}{*}{32} & 0.3623 & 0.8630 & 0.8571 & \multirow{3}{*}{0.3744 $\pm$ 0.0140} & \multirow{3}{*}{0.8611 $\pm$ 0.0070} & \multirow{3}{*}{0.8551 $\pm$ 0.0085} \\
+                        & 0.3667 & 0.8517 & 0.8438 & & \\
+                        & 0.3941 & 0.8686 & 0.8643 & & \\
     \midrule
-    \multirow{3}{*}{128} & 0.7175 & 0.8602 & 0.8553 & \multirow{3}{*}{0.4346 $\pm$ 0.0702} & \multirow{3}{*}{0.8616 $\pm$ 0.0031} & \multirow{3}{*}{0.8567 $\pm$ 0.0014} \\
-                         & 0.6443 & 0.8588 & 0.8563 & & \\
-                         & 0.8156 & 0.8658 & 0.8586 & & \\
+    \multirow{3}{*}{128} & 0.7841 & 0.8602 & 0.8553 & \multirow{3}{*}{0.7050 $\pm$ 0.0748} & \multirow{3}{*}{0.8616 $\pm$ 0.0031} & \multirow{3}{*}{0.8567 $\pm$ 0.0014} \\
+                         & 0.6046 & 0.8588 & 0.8563 & & \\
+                         & 0.7261 & 0.8658 & 0.8586 & & \\
     \bottomrule
     \end{tabular}
     \caption{Detailed Model Performance Across Trials with Different Hidden Units}
@@ -641,7 +650,9 @@ One of the possible reasons for the gap between the testing accuracy rate and F 
 \subsection*{Q22.}
 
 From the table \ref{tab:detailed_model_performance}, we can find the best performance of the model has accuracy rate 0.8616 $\pm$ 0.0031 and F1 score 0.8567 $\pm$ 0.0014 when the number of hidden units is 128. This is higher than the Logistic Regression model, which has accuracy rate 0.855 $\pm$ 0.001 and F1 score 0.850 $\pm$ 0.001.
-However, the training time of the best model is 0.4346 $\pm$ 0.0702, which is relatively high comparing to the training time of the Logistic Regression model.
+However, the training time of the best model is 0.7050 $\pm$ 0.0748, which is relatively high comparing to the training time of the Logistic Regression model (which is no higher than 0.01s).
+
+\newpage
 
 \subsection*{Q23.}
 
@@ -649,6 +660,7 @@ From the figure \ref{tab:complete_model_performance}, we can trivailly find that
 One of the possible reasons could be that the more hidden units, the more complex the model, and the more complex the model, the more the model could fit the data.
 Also, due to the complexity of the model, we may need more time to train the model.
 
+Moreover, the spead of increase of the accuracy and F1 score is decreasing as the hidden units increases. The possible reason could be that the model has already good enough to fit the data, so the increase of the hidden units could not make the model to be better.
 \newpage
 
 \section*{Part 5: Performance Enhancement}
