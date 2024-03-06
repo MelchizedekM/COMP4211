@@ -498,10 +498,10 @@ The table \ref{tab:Feedforward} and figure \ref{fig:feedforward} shows the perfo
         \hline
         H values & $R^2_1$ & $R^2_2$ & $R^2_3$ & mean $R^2$ & Std($R^2$) & $T_1$ & $T_2$ & $T_3$ & mean $T$ & Std($T$) \\
         \hline
-        1 & 0.07566 & 0.05976 &  -0.00093 & 0.0448 & 0.0330 & 7.3014 & 2.2372 & 1.5578  & 3.6988 & 2.5625\\
-        8 & 0.29031 & 0.26985 & 0.24427 & 0.2681 & 0.0188 & 3.0492 & 4.47807 & 7.4026 & 4.9766 & 1.8119 \\
-        32 & 0.35848 & 0.25432 & 0.20716 & 0.2733 & 0.0632 & 4.6055 & 3.6451 & 5.1407 & 4.4638 & 0.6188 \\
-        128 & 0.35523 & 0.30468& 0.39429 & 0.3514 & 0.0367 & 4.3852 & 4.1018 & 3.9308 & 4.1393 & 0.1874 \\
+        1 & 0.07566 & 0.05976 &  -0.00093 & 0.0448 & 0.0330 & 1.2492 & 1.2492 & 0.2607  & 0.2607 & 0.2607\\
+        8 & 0.29031 & 0.26985 & 0.24427 & 0.2681 & 0.0188 & 0.5579 & 0.8106 & 1.3534 & 0.9073 & 0.3319 \\
+        32 & 0.35848 & 0.25432 & 0.20716 & 0.2733 & 0.0632 & 1.4509 & 1.2168 & 1.5971 & 1.4216 & 0.1566 \\
+        128 & 0.35523 & 0.30468& 0.39429 & 0.3514 & 0.0367 & 4.3852 & 1.4458 & 1.3225 & 1.4063 & 0.0593 \\
         \hline
     \end{tabular}
     \caption{The performance of the feedforward neural network model}
@@ -540,14 +540,14 @@ According to the user guide, when we use the command "optimal" the learning rate
     \toprule
     Learning Rate & $\eta_0$ & Tolerance & Avg. Training Time (s) & Avg. F1 Score & Avg. Test Acc. & Avg. Train Acc. \\
     \midrule
-    constant & 0.02 & 0.001 & 0.0 $\pm$ 0.0 & 0.823 $\pm$ 0.010 & 0.826 $\pm$ 0.011 & 0.792 $\pm$ 0.014 \\
-    constant & 0.01 & 0.001 & 0.016 $\pm$ 0.0002 & 0.850 $\pm$ 0.001 & 0.855 $\pm$ 0.001 & 0.821 $\pm$ 0.002 \\
-    constant & 0.02 & 0.01 & 0.0 $\pm$ 0.0 & 0.799 $\pm$ 0.027 & 0.802 $\pm$ 0.028 & 0.762 $\pm$ 0.036 \\
-    constant & 0.01 & 0.01 & 0.003 $\pm$ 0.005 & 0.823 $\pm$ 0.006 & 0.826 $\pm$ 0.006 & 0.787 $\pm$ 0.019 \\
-    optimal & 0.02 & 0.001 & 0.026 $\pm$ 0.008 & 0.825 $\pm$ 0.008 & 0.830 $\pm$ 0.006 & 0.798 $\pm$ 0.008 \\
-    optimal & 0.01 & 0.001 & 0.037 $\pm$ 0.008 & 0.825 $\pm$ 0.008 & 0.830 $\pm$ 0.006 & 0.798 $\pm$ 0.008 \\
-    optimal & 0.02 & 0.01 & 0.023 $\pm$ 0.007 & 0.813 $\pm$ 0.010 & 0.817 $\pm$ 0.012 & 0.787 $\pm$ 0.013 \\
-    optimal & 0.01 & 0.01 & 0.021 $\pm$ 0.007 & 0.813 $\pm$ 0.010 & 0.817 $\pm$ 0.012 & 0.787 $\pm$ 0.013 \\
+    constant & 0.02 & 0.001 & 0.0038 $\pm$ 0.0008 & 0.823 $\pm$ 0.010 & 0.826 $\pm$ 0.011 & 0.792 $\pm$ 0.014 \\
+    constant & 0.01 & 0.001 & 0.0044 $\pm$ 0.0004 & 0.850 $\pm$ 0.001 & 0.855 $\pm$ 0.001 & 0.821 $\pm$ 0.002 \\
+    constant & 0.02 & 0.01 & 0.0036 $\pm$ 7.19e-05 & 0.799 $\pm$ 0.027 & 0.802 $\pm$ 0.028 & 0.762 $\pm$ 0.036 \\
+    constant & 0.01 & 0.01 & 0.0035 $\pm$ 4.41e-05 & 0.823 $\pm$ 0.006 & 0.826 $\pm$ 0.006 & 0.787 $\pm$ 0.019 \\
+    optimal & 0.02 & 0.001 & 0.0171 $\pm$ 0.0038 & 0.825 $\pm$ 0.008 & 0.830 $\pm$ 0.006 & 0.798 $\pm$ 0.008 \\
+    optimal & 0.01 & 0.001 & 0.0171 $\pm$ 0.0038 & 0.825 $\pm$ 0.008 & 0.830 $\pm$ 0.006 & 0.798 $\pm$ 0.008 \\
+    optimal & 0.02 & 0.01 & 0.0151 $\pm$ 0.0020 & 0.813 $\pm$ 0.010 & 0.817 $\pm$ 0.012 & 0.787 $\pm$ 0.013 \\
+    optimal & 0.01 & 0.01 & 0.0154 $\pm$ 0.0022 & 0.813 $\pm$ 0.010 & 0.817 $\pm$ 0.012 & 0.787 $\pm$ 0.013 \\
     \bottomrule
     \end{tabular}
     \caption{Model Performance Across Different Parameters  (all the data satifies this $\overline{x}$ $\pm$ $\sigma$ formular)}
@@ -582,11 +582,11 @@ From the table \ref{tab:complete_model_performance}, as the learning rate increa
     \toprule
     Learning Rate & Training Time (s) & F1 Score & Testing Accuracy & Training Accuracy \\
     \midrule
-    0.05 & 0.0 & 0.765958 & 0.774011 & 0.723773 \\
-    0.04 & 0.010511 & 0.799790 & 0.806497 & 0.759449 \\
-    0.03 & 0.0 & 0.782188 & 0.788136 & 0.754504 \\
-    0.02 & 0.0 & 0.816410 & 0.817797 & 0.778877 \\
-    0.01 & 0.0 & 0.847873 & 0.853107 & 0.820205 \\
+    0.05 & 0.0026 & 0.765958 & 0.774011 & 0.723773 \\
+    0.04 & 0.0036 & 0.799790 & 0.806497 & 0.759449 \\
+    0.03 & 0.0036 & 0.782188 & 0.788136 & 0.754504 \\
+    0.02 & 0.0047 & 0.816410 & 0.817797 & 0.778877 \\
+    0.01 & 0.0052 & 0.847873 & 0.853107 & 0.820205 \\
     \bottomrule
     \end{tabular}
     \caption{Model Performance with Constant Learning Rate}
@@ -674,7 +674,7 @@ I apply a series of data preprocessing steps before fitting the data to neural n
 
 \begin{lstlisting}
 Numerical Features Preprocessing:
-    - Imputation: Missing values are imputed using constant zero for each column.
+    - Imputation: Missing values are imputed using median for each column.
     - Scaling: Features are scaled using StandardScaler.
 
 Ordinal Features Preprocessing:
