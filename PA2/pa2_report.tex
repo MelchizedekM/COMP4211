@@ -1,0 +1,111 @@
+\documentclass{article}
+\usepackage{amssymb}
+\usepackage{babel}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{framed}
+\usepackage{pifont}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{subcaption} 
+\usepackage{subcaption} 
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{array}
+
+\definecolor{codegray}{gray}{0.9}
+\lstset{
+    backgroundcolor=\color{codegray},
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single
+}
+
+
+\def\ra{\rightarrow}
+\def\oo{\infty}
+\def\l/{\backslash}
+\def\0{\emptyset}
+\def\b{\,\,\,}
+\def\mm{{\mu^*}}
+\def\hm{\mathcal{H}^s}
+\def\vm{\nu^*}
+\def\cui{\bigcup_{i=1}^\infty}
+\def\cai{\bigcap_{i=1}^\infty}
+\def\cuj{\bigcup_{j=1}^\infty}
+\def\caj{\bigcap_{j=1}^\infty}
+\def\sumj{\sum_{j=1}^\infty}
+\def\sumi{\sum_{i=1}^\infty}
+\def\sumn{\sum_{n=1}^\infty}
+\def\px{\mathcal{P}_X}
+\def\s{\mathcal{S}}
+\def\a{\mathcal{A}}
+\def\bs{\mathcal{B}}
+\def\lm{\mathcal{L}}
+\def\R{\mathbb{R}}
+\def\E{\mathbb{E}}
+\def\Z{\mathbb{Z}}
+\def\m{\mathcal{M}}
+\def\rr{\Rightarrow}
+\def\tf{$\Rightarrow$}
+\def\f{\mathcal{F}}
+\def\limn{\lim_{n \rightarrow \infty}}
+\def\st{\text{s.t.}}
+\def\sums{ \sum_{x \in \s}}
+
+%Ricky Def
+\def\baru{\bar{\mu}}
+\def\Mbaru{\mathfrak{M}_{\baru}}
+
+
+\title{COMP4211 PA2 Report} 
+\author{Name: Ruiming Min; SID: 20827430; ITSC: rmin}
+\date{\today}
+
+\begin{document}
+
+    
+\maketitle
+
+\section*{5 Datasets and Data Loaders}
+
+\subsection*{5.3 Dataloader Implementation}
+
+\subsubsection*{[Q1]}
+Number of images in COCO dataset: 3557.
+Number of images in WikiArt dataset: 7492.
+
+\subsubsection*{[Q2]}
+Number of images in PACS train dataset: 1641.
+Number of images in PACS test dataset: 2723.
+
+\section*{6 Style Transfer}
+
+\subsection*{6.2 Model}
+
+\subsubsection*{[Q3]}
+Since after encoding, the image is represented as a 3D tensor and its 2D shape is much smaller than the original image. 
+Therefore, in the decoder, we need the upsampling to re-construct the image to its original size.
+
+\subsubsection*{[Q4]}
+For eact layer, we have the trainable parameters as follows:
+\begin{itemize}
+    \item Conv2d: $(k \times k \times c_{in} + 1) \times c_{out}$
+    \item Pooling and Upsampling: 0
+\end{itemize}
+
+Therefore, the total number of trainable parameters is 2332511.
+
+\subsubsection*{[Q5]}
+Since the we need encoder to encode the image and mine the features, but if we only use the encoder, we cannot re-construct the image. 
+Therefore, we need the decoder to re-construct the image.
+
+\subsubsection*{[Q6]}
+Since in this model, we do not only need the style match our target style, but also need the content to be preserved.
+Therefore, we need to use the content loss and style loss to balance the style transfer.
+
+
+
+\end{document}
