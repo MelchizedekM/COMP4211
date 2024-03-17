@@ -1,0 +1,694 @@
+\documentclass{article}
+\usepackage{amssymb}
+\usepackage{babel}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{framed}
+\usepackage{pifont}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{subcaption} 
+\usepackage{subcaption} 
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{hyperref}
+
+
+\definecolor{codegray}{gray}{0.9}
+\lstset{
+    backgroundcolor=\color{codegray},
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single
+}
+
+
+\def\ra{\rightarrow}
+\def\oo{\infty}
+\def\l/{\backslash}
+\def\0{\emptyset}
+\def\b{\,\,\,}
+\def\mm{{\mu^*}}
+\def\hm{\mathcal{H}^s}
+\def\vm{\nu^*}
+\def\cui{\bigcup_{i=1}^\infty}
+\def\cai{\bigcap_{i=1}^\infty}
+\def\cuj{\bigcup_{j=1}^\infty}
+\def\caj{\bigcap_{j=1}^\infty}
+\def\sumj{\sum_{j=1}^\infty}
+\def\sumi{\sum_{i=1}^\infty}
+\def\sumn{\sum_{n=1}^\infty}
+\def\px{\mathcal{P}_X}
+\def\s{\mathcal{S}}
+\def\a{\mathcal{A}}
+\def\bs{\mathcal{B}}
+\def\lm{\mathcal{L}}
+\def\R{\mathbb{R}}
+\def\E{\mathbb{E}}
+\def\Z{\mathbb{Z}}
+\def\m{\mathcal{M}}
+\def\rr{\Rightarrow}
+\def\tf{$\Rightarrow$}
+\def\f{\mathcal{F}}
+\def\limn{\lim_{n \rightarrow \infty}}
+\def\st{\text{s.t.}}
+\def\sums{ \sum_{x \in \s}}
+
+%Ricky Def
+\def\baru{\bar{\mu}}
+\def\Mbaru{\mathfrak{M}_{\baru}}
+
+
+\title{COMP4211 PA2 Report} 
+\author{Name: Ruiming Min; SID: 20827430; ITSC: rmin}
+\date{\today}
+
+\begin{document}
+
+    
+\maketitle
+
+\section*{Notice:}
+\textbf{Since features of the} \LaTeX \textbf{ file, most of the images and tables are not shown under the discirbation. You can find them by index. Also, you can click the index to jump to the corresponding figure or table.}
+
+\section*{5 Datasets and Data Loaders}
+
+\subsection*{5.3 Dataloader Implementation}
+
+\subsubsection*{[Q1]}
+Number of images in COCO dataset: 3557.
+Number of images in WikiArt dataset: 7492.
+
+\subsubsection*{[Q2]}
+Number of images in PACS train dataset: 1641.
+Number of images in PACS test dataset: 2723.
+
+\newpage
+
+\section*{6 Style Transfer}
+
+\subsection*{6.2 Model}
+
+\subsubsection*{[Q3]}
+Since after encoding, the image is represented as a 3D tensor and its 2D shape is much smaller than the original image. 
+Therefore, in the decoder, we need the upsampling-re-construct the image-its original size.
+
+\subsubsection*{[Q4]}
+For each layer, we have the trainable parameters as follows:
+\begin{itemize}
+    \item Conv2d: $(k \times k \times c_{in} + 1) \times c_{out}$
+    \item Pooling and Upsampling: 0
+\end{itemize}
+
+Therefore, the total number of trainable parameters is 2332511.
+
+\subsubsection*{[Q5]}
+Since the we need encoder-encode the image and mine the features, but if we only use the encoder, we cannot re-construct the image. 
+Therefore, we need the decoder-re-construct the image.
+
+\subsubsection*{[Q6]}
+Since in this model, we do not only need the style match our target style, but also need the content-be preserved.
+Therefore, we need-use the content loss and style loss-balance the style transfer.
+
+\subsection*{6.4 Training the Style Transfer model}
+
+\subsubsection*{[Q7]}
+
+After 55 epochs, total loss is 13021.544, content loss is 8052.103, and style loss is 4969.441.
+
+\subsection*{6.5 Inference}
+
+\subsubsection*{[Q8]}
+
+From the figure \ref{fig:part1_inference}, we can see the style transfer examples.
+In these comparisons, we can see that the generated images represented the content of the content images very well expect the words in them.
+For the style, the generated images are very similar-the style images in color and painting techniques.
+However, if the style is very different from the content, the generated images may not be very good (e.g.: picture l).
+Moreover, the generated images have some strange textures in some areas, which may be caused by the imbalance of the style data set, i.e., there are too many paintings in the training set.
+
+% input images in a 3*2 grid
+\begin{figure}[h!]
+    \centering
+    % First row of subfigures
+    \begin{minipage}{\textwidth}
+        \centering
+        \begin{subfigure}{0.25\textwidth}
+            \includegraphics[width=\textwidth]{./data_set/HKUST/1.jpg}
+            \caption{Content Image}
+        \end{subfigure}
+        \hfill % This command adds space between the subfigures
+        \begin{subfigure}{0.25\textwidth}
+            \includegraphics[width=\textwidth]{./wikiart/Symbolism/konstantin-bogaevsky_port-of-imaginary-city-1932.jpg}
+            \caption{Style Image}
+        \end{subfigure}
+        \hfill % This command adds space between the subfigures
+        \begin{subfigure}{0.25\textwidth}
+            \includegraphics[width=\textwidth]{./part1_inference/output_1_konstantin-bogaevsky_port-of-imaginary-city-1932.jpg}
+            \caption{Generated Image}
+        \end{subfigure}
+    \end{minipage}
+    
+    \vspace{0.1cm} % This command adds vertical space between the rows
+    
+    % Second row of subfigures
+    \begin{minipage}{\textwidth}
+        \centering
+        \begin{subfigure}{0.25\textwidth}
+            \includegraphics[width=\textwidth]{./data_set/HKUST/2.jpg}
+            \caption{Content Image}
+        \end{subfigure}
+        \hfill % This command adds space between the subfigures
+        \begin{subfigure}{0.25\textwidth}
+            \includegraphics[width=\textwidth]{./wikiart/Realism/camille-corot_toulon-battleships-dismantled.jpg}
+            \caption{Style Image}
+        \end{subfigure}
+        \hfill % This command adds space between the subfigures
+        \begin{subfigure}{0.25\textwidth}
+            \includegraphics[width=\textwidth]{./part1_inference/output_2_camille-corot_toulon-battleships-dismantled.jpg}
+            \caption{Generated Image}
+        \end{subfigure}
+    \end{minipage}
+    
+    \vspace{0.1cm}
+
+    \begin{minipage}{\textwidth}
+        \centering
+        \begin{subfigure}{0.25\textwidth}
+            \includegraphics[width=\textwidth]{./data_set/HKUST/3.jpg}
+            \caption{Content Image}
+        \end{subfigure}
+        \hfill % This command adds space between the subfigures
+        \begin{subfigure}{0.25\textwidth}
+            \includegraphics[width=\textwidth]{./wikiart/Post_Impressionism/vincent-van-gogh_red-vineyards-at-arles-1888.jpg}
+            \caption{Style Image}
+        \end{subfigure}
+        \hfill % This command adds space between the subfigures
+        \begin{subfigure}{0.25\textwidth}
+            \includegraphics[width=\textwidth]{./part1_inference/output_3_vincent-van-gogh_red-vineyards-at-arles-1888.jpg}
+            \caption{Generated Image}
+        \end{subfigure}
+    \end{minipage}
+    
+    \vspace{0.1cm}
+
+    \begin{minipage}{\textwidth}
+        \centering
+        \begin{subfigure}{0.25\textwidth}
+            \includegraphics[width=\textwidth]{./data_set/HKUST/6.jpeg}
+            \caption{Content Image}
+        \end{subfigure}
+        \hfill % This command adds space between the subfigures
+        \begin{subfigure}{0.25\textwidth}
+            \includegraphics[width=\textwidth]{./wikiart/Art_Nouveau_Modern/boris-kustodiev_under-honey-s-harmonica-1927.jpg}
+            \caption{Style Image}
+        \end{subfigure}
+        \hfill % This command adds space between the subfigures
+        \begin{subfigure}{0.25\textwidth}
+            \includegraphics[width=\textwidth]{./part1_inference/output_6_boris-kustodiev_under-honey-s-harmonica-1927.jpg}
+            \caption{Generated Image}
+        \end{subfigure}
+    \end{minipage}
+    
+    \vspace{0.1cm}
+
+    \begin{minipage}{\textwidth}
+        \centering
+        \begin{subfigure}{0.25\textwidth}
+            \includegraphics[width=\textwidth]{./data_set/HKUST/14.jpeg}
+            \caption{Content Image}
+        \end{subfigure}
+        \hfill % This command adds space between the subfigures
+        \begin{subfigure}{0.25\textwidth}
+            \includegraphics[width=\textwidth]{./wikiart/Early_Renaissance/sandro-botticelli_crucifixion(1).jpg}
+            \caption{Style Image}
+        \end{subfigure}
+        \hfill % This command adds space between the subfigures
+        \begin{subfigure}{0.25\textwidth}
+            \includegraphics[width=\textwidth]{./part1_inference/output_14_sandro-botticelli_crucifixion(1).jpg}
+            \caption{Generated Image}
+        \end{subfigure}
+    \end{minipage}    
+    
+    \caption{Example of Style Transfer}
+    \label{fig:part1_inference}
+\end{figure}
+
+\newpage
+
+\section*{7 Classification Task}
+
+\subsection*{7.2 Analyzing the Dataset}
+
+\subsubsection*{[Q9]}
+
+From the figure \ref{fig:class_distribution}, and the output of the code (table \ref{tab:dataset_distribution}), 
+we can see that the training and testing dataset distributions are very similar expect house and guitar.
+The ratios of training samples of house and guitar are less than the testing samples.
+And the number of training samples of each class is a half of the testing samples.
+
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{lcc}
+    \toprule
+    Label & Train Count & Test Count \\
+    \midrule
+    Giraffe   & 265 & 425 \\
+    Dog       & 262 & 407 \\
+    Elephant  & 256 & 370 \\
+    House     & 251 & 386 \\
+    Person    & 247 & 413 \\
+    Horse     & 210 & 382 \\
+    Guitar    & 150 & 340 \\
+    \bottomrule
+    \end{tabular}
+    \caption{Comparison of training and testing dataset distributions.}
+    \label{tab:dataset_distribution}
+\end{table}
+
+% input images for training and testing
+\begin{figure}[h!]
+    \centering
+% First row of subfigures
+    \begin{subfigure}{0.45\textwidth}
+        \includegraphics[width=\textwidth]{./pic/class_distribution_1641.png}
+        \caption{Train Image}
+    \end{subfigure}
+    \hfill % This command adds space between the subfigures
+    \begin{subfigure}{0.45\textwidth}
+        \includegraphics[width=\textwidth]{./pic/class_distribution_2723.png}
+        \caption{Test Image}
+    \end{subfigure}
+    \caption{Class Distribution}
+    \label{fig:class_distribution}
+\end{figure}
+
+
+\subsubsection*{[Q10]}
+Since horse and guitar have less training samples, the model may not be able-learn the features of these two classes very well.
+Therefore, the model may not be able-classify the horse and guitar very well.
+
+\subsection*{7.3 Model Implementation}
+
+\subsubsection*{[Q11]}
+
+For each layer, we have the trainable parameters as follows:
+\begin{itemize}
+    \item Dense Layer: $(n_{in} + 1) \times n_{out}$
+    \item Pooling: 0
+\end{itemize}
+
+Therefore, the total number of trainable parameters is 2103303.
+
+
+\subsection*{7.4 Training the Classification model}
+
+\subsubsection*{[Q12]}
+
+After 150 epochs, the cross-entropy loss is 0.856, the detailed loss summary is shown in the table \ref{tab:cross_entropy_loss}.
+\begin{table}[ht]
+    \centering
+    \caption{Cross-Entropy Loss Summary Every 10 Epochs}
+    \begin{tabular}{cc}
+    \toprule
+    Epoch & Cross-Entropy Loss \\
+    \midrule
+    10  & 1.505 \\
+    20  & 1.409 \\
+    30  & 1.306 \\
+    40  & 1.256 \\
+    50  & 1.214 \\
+    60  & 1.164 \\
+    70  & 1.132 \\
+    80  & 1.091 \\
+    90  & 1.047 \\
+    100 & 1.023 \\
+    110 & 0.968 \\
+    120 & 0.955 \\
+    130 & 0.911 \\
+    140 & 0.888 \\
+    150 & 0.856 \\
+    \bottomrule
+    \end{tabular}
+    \label{tab:cross_entropy_loss}
+\end{table}
+
+
+\subsection*{7.5 Testing Routine}
+
+\subsubsection*{[Q13]}
+
+The accuracy of training dataset is 0.662, and the accuracy of testing dataset is 0.242.
+
+The confusion matrix is shown in the table \ref{tab:confusion_matrix_train} and table \ref{tab:confusion_matrix_test}.
+
+Also, I visualize the confusion matrix in the figure \ref{fig:confusion_matrix_train} and figure \ref{fig:confusion_matrix_test}.
+
+\begin{center}
+    \textbf{Confusion Matrix for Train}
+    
+    \begin{tabular}{c|ccccccc}
+    \toprule
+    & \multicolumn{7}{c}{Predicted Labels} \\
+    \cmidrule(lr){2-8}
+    True Labels & dog & elephant & giraffe & guitar & horse & house & person \\
+    \midrule
+    dog & 237 & 0 & 9 & 6 & 3 & 4 & 3 \\
+    elephant & 217 & 20 & 10 & 1 & 5 & 1 & 2 \\
+    giraffe & 11 & 1 & 192 & 31 & 14 & 8 & 8 \\
+    guitar & 17 & 3 & 13 & 108 & 5 & 1 & 3 \\
+    horse & 9 & 0 & 47 & 12 & 119 & 6 & 17 \\
+    house & 13 & 1 & 14 & 3 & 9 & 205 & 5 \\
+    person & 13 & 0 & 13 & 4 & 8 & 5 & 204 \\
+    \bottomrule
+    \end{tabular}
+    \captionof{table}{Confusion matrix for the training dataset.}
+    \label{tab:confusion_matrix_train}
+    \end{center}
+    
+    \begin{center}
+    \textbf{Confusion Matrix for Test}
+    
+    \begin{tabular}{c|ccccccc}
+    \toprule
+    & \multicolumn{7}{c}{Predicted Labels} \\
+    \cmidrule(lr){2-8}
+    True Labels & dog & elephant & giraffe & guitar & horse & house & person \\
+    \midrule
+    dog & 119 & 4 & 96 & 48 & 51 & 50 & 38 \\
+    elephant & 124 & 11 & 63 & 47 & 52 & 40 & 33 \\
+    giraffe & 106 & 4 & 129 & 90 & 30 & 45 & 20 \\
+    guitar & 102 & 5 & 52 & 79 & 45 & 19 & 38 \\
+    horse & 110 & 2 & 73 & 50 & 83 & 38 & 26 \\
+    house & 83 & 4 & 88 & 28 & 33 & 131 & 19 \\
+    person & 119 & 5 & 79 & 39 & 40 & 25 & 105 \\
+    \bottomrule
+    \end{tabular}
+    \captionof{table}{Confusion matrix for the testing dataset.}
+    \label{tab:confusion_matrix_test}
+\end{center}
+
+% import confusion matrix
+\begin{figure}[h!]
+    \centering
+    % First row of subfigures
+    \begin{subfigure}{0.45\textwidth}
+        \includegraphics[width=\textwidth]{./pic/confusion_matrix_1641.png}
+        \caption{Train Confusion Matrix}
+        \label{fig:confusion_matrix_train}
+    \end{subfigure}
+    \hfill % This command adds space between the subfigures
+    \begin{subfigure}{0.45\textwidth}
+        \includegraphics[width=\textwidth]{./pic/confusion_matrix_2723.png}
+        \caption{Test Confusion Matrix}
+        \label{fig:confusion_matrix_test}
+    \end{subfigure}
+    \caption{Confusion Matrix}
+\end{figure}
+
+\subsubsection*{[Q14]}
+
+The figure \ref{fig:misclassified} shows the misclassified images.
+These figures show that the model may not be able to classify those images with complex backgrounds and multiple objects very well.
+Also, they may be too vague, concise and unconventional.
+
+\begin{center}
+    \noindent 
+    \begin{minipage}{0.142\textwidth}
+        \includegraphics[width=\linewidth]{./pic/misclassified_r0_p2_2723.jpg}
+        dog-giraffe
+    \end{minipage}%
+    \begin{minipage}{0.142\textwidth}
+        \includegraphics[width=\linewidth]{./pic/misclassified_r0_p3_2723.jpg}
+        dog-guitar
+    \end{minipage}%
+    \begin{minipage}{0.142\textwidth}
+        \includegraphics[width=\linewidth]{./pic/misclassified_r0_p6_2723.jpg}
+        dog-person
+    \end{minipage}%
+    \begin{minipage}{0.142\textwidth}
+        \includegraphics[width=\linewidth]{./pic/misclassified_r1_p0_2723.jpg}
+        elephant-dog
+    \end{minipage}%
+    \begin{minipage}{0.142\textwidth}
+        \includegraphics[width=\linewidth]{./pic/misclassified_r1_p2_2723.jpg}
+        elephant-giraffe
+    \end{minipage}%
+    \begin{minipage}{0.142\textwidth}
+        \includegraphics[width=\linewidth]{./pic/misclassified_r2_p3_2723.jpg}
+        giraffe-guitar
+    \end{minipage}%
+    \begin{minipage}{0.142\textwidth}
+        \includegraphics[width=\linewidth]{./pic/misclassified_r2_p4_2723.jpg}
+        giraffe-horse
+    \end{minipage}%
+
+    % 新的一行
+    \noindent
+    \begin{minipage}{0.142\textwidth}
+        \includegraphics[width=\linewidth]{./pic/misclassified_r2_p5_2723.jpg}
+        giraffe-house
+    \end{minipage}%
+    \begin{minipage}{0.142\textwidth}
+        \includegraphics[width=\linewidth]{./pic/misclassified_r3_p0_2723.jpg}
+        guitar-dog
+    \end{minipage}%
+    \begin{minipage}{0.142\textwidth}
+        \includegraphics[width=\linewidth]{./pic/misclassified_r3_p4_2723.jpg}
+        guitar-horse
+    \end{minipage}%
+    \begin{minipage}{0.142\textwidth}
+        \includegraphics[width=\linewidth]{./pic/misclassified_r4_p3_2723.jpg}
+        horse-guitar
+    \end{minipage}%
+    \begin{minipage}{0.142\textwidth}
+        \includegraphics[width=\linewidth]{./pic/misclassified_r5_p4_2723.jpg}
+        house-horse
+    \end{minipage}%
+    \begin{minipage}{0.142\textwidth}
+        \includegraphics[width=\linewidth]{./pic/misclassified_r6_p0_2723.jpg}
+        person-dog
+    \end{minipage}%
+    \begin{minipage}{0.142\textwidth}
+        \includegraphics[width=\linewidth]{./pic/misclassified_r6_p4_2723.jpg}
+        person-horse
+    \end{minipage}%
+
+    \captionof{figure}{Misclassified Images (the label below is [true label]-[wrong label])}
+    \label{fig:misclassified}
+\end{center}
+
+\subsection*{7.6 Data Augmentation by Style Transfer}
+
+\subsubsection*{[Q15]}
+
+In figure \ref{fig:label_style}, we can see the example of images with labels and styles.
+
+\begin{figure}[htp]
+    \centering
+    \begin{minipage}{0.14285714285714285\linewidth}
+        \includegraphics[width=\linewidth]{./classify/derived-files/dog_art\_painting_0.jpg}
+        {dog-art\_painting}
+    \end{minipage}%%
+    \begin{minipage}{0.14285714285714285\linewidth}
+        \includegraphics[width=\linewidth]{./classify/derived-files/dog_cartoon_0.jpg}
+        {dog-cartoon}
+    \end{minipage}%%
+    \begin{minipage}{0.14285714285714285\linewidth}
+        \includegraphics[width=\linewidth]{./classify/derived-files/dog_photo_0.jpg}
+        {dog-photo}
+    \end{minipage}%%
+    \begin{minipage}{0.14285714285714285\linewidth}
+        \includegraphics[width=\linewidth]{./classify/derived-files/dog_sketch_0.jpg}
+        {dog-sketch}
+    \end{minipage}%%
+    \begin{minipage}{0.14285714285714285\linewidth}
+        \includegraphics[width=\linewidth]{./classify/derived-files/elephant_art\_painting_0.jpg}
+        {elephant-art\_painting}
+    \end{minipage}%%
+    \begin{minipage}{0.14285714285714285\linewidth}
+        \includegraphics[width=\linewidth]{./classify/derived-files/elephant_cartoon_0.jpg}
+        {elephant-cartoon}
+    \end{minipage}%%
+    \begin{minipage}{0.14285714285714285\linewidth}
+        \includegraphics[width=\linewidth]{./classify/derived-files/elephant_photo_0.jpg}
+        {elephant-photo}
+    \end{minipage}%
+
+    \begin{minipage}{0.14285714285714285\linewidth}
+        \includegraphics[width=\linewidth]{./classify/derived-files/elephant_sketch_0.jpg}
+        {elephant-sketch}
+    \end{minipage}%%
+    \begin{minipage}{0.14285714285714285\linewidth}
+        \includegraphics[width=\linewidth]{./classify/derived-files/giraffe_art\_painting_0.jpg}
+        {giraffe-art\_painting}
+    \end{minipage}%%
+    \begin{minipage}{0.14285714285714285\linewidth}
+        \includegraphics[width=\linewidth]{./classify/derived-files/giraffe_cartoon_0.jpg}
+        {giraffe-cartoon}
+    \end{minipage}%%
+    \begin{minipage}{0.14285714285714285\linewidth}
+        \includegraphics[width=\linewidth]{./classify/derived-files/giraffe_photo_0.jpg}
+        {giraffe-photo}
+    \end{minipage}%%
+    \begin{minipage}{0.14285714285714285\linewidth}
+        \includegraphics[width=\linewidth]{./classify/derived-files/giraffe_sketch_0.jpg}
+        {giraffe-sketch}
+    \end{minipage}%%
+    \begin{minipage}{0.14285714285714285\linewidth}
+        \includegraphics[width=\linewidth]{./classify/derived-files/guitar_art\_painting_0.jpg}
+        {guitar-art\_painting}
+    \end{minipage}%%
+    \begin{minipage}{0.14285714285714285\linewidth}
+        \includegraphics[width=\linewidth]{./classify/derived-files/guitar_cartoon_0.jpg}
+        {guitar-cartoon}
+    \end{minipage}%
+
+    \begin{minipage}{0.14285714285714285\linewidth}
+        \includegraphics[width=\linewidth]{./classify/derived-files/guitar_photo_0.jpg}
+        {guitar-photo}
+    \end{minipage}%%
+    \begin{minipage}{0.14285714285714285\linewidth}
+        \includegraphics[width=\linewidth]{./classify/derived-files/guitar_sketch_0.jpg}
+        {guitar-sketch}
+    \end{minipage}%%
+    \begin{minipage}{0.14285714285714285\linewidth}
+        \includegraphics[width=\linewidth]{./classify/derived-files/horse_art\_painting_0.jpg}
+        {horse-art\_painting}
+    \end{minipage}%%
+    \begin{minipage}{0.14285714285714285\linewidth}
+        \includegraphics[width=\linewidth]{./classify/derived-files/horse_cartoon_0.jpg}
+        {horse-cartoon}
+    \end{minipage}%%
+    \begin{minipage}{0.14285714285714285\linewidth}
+        \includegraphics[width=\linewidth]{./classify/derived-files/horse_photo_0.jpg}
+        {horse-photo}
+    \end{minipage}%%
+    \begin{minipage}{0.14285714285714285\linewidth}
+        \includegraphics[width=\linewidth]{./classify/derived-files/horse_sketch_0.jpg}
+        {horse-sketch}
+    \end{minipage}%%
+    \begin{minipage}{0.14285714285714285\linewidth}
+        \includegraphics[width=\linewidth]{./classify/derived-files/house_art\_painting_0.jpg}
+        {house-art\_painting}
+    \end{minipage}%
+
+    \begin{minipage}{0.14285714285714285\linewidth}
+        \includegraphics[width=\linewidth]{./classify/derived-files/house_cartoon_0.jpg}
+        {house-cartoon}
+    \end{minipage}%%
+    \begin{minipage}{0.14285714285714285\linewidth}
+        \includegraphics[width=\linewidth]{./classify/derived-files/house_photo_0.jpg}
+        {house-photo}
+    \end{minipage}%%
+    \begin{minipage}{0.14285714285714285\linewidth}
+        \includegraphics[width=\linewidth]{./classify/derived-files/house_sketch_0.jpg}
+        {house-sketch}
+    \end{minipage}%%
+    \begin{minipage}{0.14285714285714285\linewidth}
+        \includegraphics[width=\linewidth]{./classify/derived-files/person_art\_painting_0.jpg}
+        {person-art\_painting}
+    \end{minipage}%%
+    \begin{minipage}{0.14285714285714285\linewidth}
+        \includegraphics[width=\linewidth]{./classify/derived-files/person_cartoon_0.jpg}
+        {person-cartoon}
+    \end{minipage}%%
+    \begin{minipage}{0.14285714285714285\linewidth}
+        \includegraphics[width=\linewidth]{./classify/derived-files/person_photo_0.jpg}
+        {person-photo}
+    \end{minipage}%%
+    \begin{minipage}{0.14285714285714285\linewidth}
+        \includegraphics[width=\linewidth]{./classify/derived-files/person_sketch_0.jpg}
+        {person-sketch}
+    \end{minipage}%
+
+
+\caption{Example of images with labels and styles.}
+\label{fig:label_style}
+\end{figure}
+
+\subsection*{7.7 Retraining with Augmented Dataset}
+
+\subsubsection*{[Q16]}
+
+After 300 epochs, the cross-entropy loss is 0.884.
+
+\subsubsection*{[Q17]}
+The accuracy of training dataset is 0.660, and the accuracy of testing dataset is 0.262.
+
+The confusion matrix is shown in the table \ref{tab:confusion_matrix_train_aug} and table \ref{tab:confusion_matrix_test_aug}.
+
+Also, I visualize the confusion matrix in the figure \ref{fig:confusion_matrix_train_aug} and figure \ref{fig:confusion_matrix_test_aug}.
+
+\begin{center}
+    \textbf{Confusion Matrix for Train}
+    
+    \begin{tabular}{c|ccccccc}
+    \toprule
+    & \multicolumn{7}{c}{Predicted Labels} \\
+    \cmidrule(lr){2-8}
+    True Labels & dog & elephant & giraffe & guitar & horse & house & person \\
+    \midrule
+    dog & 361 & 12 & 24 & 22 & 16 & 7 & 13 \\
+    elephant & 261 & 82 & 23 & 28 & 14 & 22 & 20 \\
+    giraffe & 17 & 6 & 338 & 28 & 19 & 23 & 32 \\
+    guitar & 33 & 17 & 63 & 204 & 9 & 14 & 9 \\
+    horse & 18 & 4 & 36 & 18 & 274 & 26 & 26 \\
+    house & 22 & 3 & 15 & 4 & 11 & 377 & 17 \\
+    person & 22 & 0 & 31 & 14 & 8 & 17 & 348 \\
+    \bottomrule
+    \end{tabular}
+    \captionof{table}{Confusion matrix for the training dataset.}
+    \label{tab:confusion_matrix_train_aug}
+    \end{center}
+    
+    \begin{center}
+    \textbf{Confusion Matrix for Test}
+    
+    \begin{tabular}{c|ccccccc}
+    \toprule
+    & \multicolumn{7}{c}{Predicted Labels} \\
+    \cmidrule(lr){2-8}
+    True Labels & dog & elephant & giraffe & guitar & horse & house & person \\
+    \midrule
+    dog & 132 & 7 & 75 & 56 & 43 & 51 & 43 \\
+    elephant & 142 & 23 & 52 & 46 & 41 & 31 & 35 \\
+    giraffe & 111 & 12 & 153 & 51 & 31 & 42 & 25 \\
+    guitar & 107 & 16 & 49 & 77 & 39 & 27 & 24 \\
+    horse & 107 & 17 & 54 & 38 & 100 & 42 & 24 \\
+    house & 100 & 10 & 54 & 33 & 42 & 123 & 23 \\
+    person & 124 & 10 & 51 & 42 & 48 & 33 & 104 \\
+    \bottomrule
+    \end{tabular}
+    \captionof{table}{Confusion matrix for the testing dataset.}
+    \label{tab:confusion_matrix_test_aug}
+\end{center}
+    
+\begin{figure}[h!]
+    \centering
+    % First row of subfigures
+    \begin{subfigure}{0.45\textwidth}
+        \includegraphics[width=\textwidth]{./pic/confusion_matrix_3041.png}
+        \caption{Train Confusion Matrix}
+        \label{fig:confusion_matrix_train_aug}
+    \end{subfigure}
+    \hfill % This command adds space between the subfigures
+    \begin{subfigure}{0.45\textwidth}
+        \includegraphics[width=\textwidth]{./pic/confusion_matrix_2723_1.png}
+        \caption{Test Confusion Matrix}
+        \label{fig:confusion_matrix_test_aug}
+    \end{subfigure}
+    \caption{Confusion Matrix}
+\end{figure}
+
+Comparing the confusion matrix of the original model and the model with augmented dataset, 
+we can see that the model with augmented dataset has a little bit better performance.
+
+\subsubsection*{[Q18]}
+This result may be caused by the fact that the augmented dataset has more samples and more styles,
+which can help the model learn more features and be more robust.
+
+\end{document}
