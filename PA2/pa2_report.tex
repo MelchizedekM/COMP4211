@@ -341,7 +341,7 @@ After 150 epochs, the cross-entropy loss is 0.856, the detailed loss summary is 
 
 \subsubsection*{[Q13]}
 
-The accuracy of training dataset is 0.662, and the accuracy of testing dataset is 0.242.
+The accuracy of training dataset is 0.674, and the accuracy of testing dataset is 0.252.
 
 The confusion matrix is shown in the table \ref{tab:confusion_matrix_train} and table \ref{tab:confusion_matrix_test}.
 
@@ -356,20 +356,21 @@ Also, I visualize the confusion matrix in the figure \ref{fig:confusion_matrix_t
     \cmidrule(lr){2-8}
     True Labels & dog & elephant & giraffe & guitar & horse & house & person \\
     \midrule
-    dog & 237 & 0 & 9 & 6 & 3 & 4 & 3 \\
-    elephant & 217 & 20 & 10 & 1 & 5 & 1 & 2 \\
-    giraffe & 11 & 1 & 192 & 31 & 14 & 8 & 8 \\
-    guitar & 17 & 3 & 13 & 108 & 5 & 1 & 3 \\
-    horse & 9 & 0 & 47 & 12 & 119 & 6 & 17 \\
-    house & 13 & 1 & 14 & 3 & 9 & 205 & 5 \\
-    person & 13 & 0 & 13 & 4 & 8 & 5 & 204 \\
+    dog & 128 & 110 & 8 & 5 & 4 & 3 & 2 \\
+    elephant & 105 & 131 & 3 & 4 & 3 & 2 & 3 \\
+    giraffe & 7 & 7 & 165 & 37 & 18 & 20 & 9 \\
+    guitar & 14 & 9 & 11 & 108 & 2 & 1 & 2 \\
+    horse & 4 & 6 & 22 & 14 & 144 & 4 & 15 \\
+    house & 11 & 2 & 6 & 1 & 7 & 217 & 5 \\
+    person & 12 & 0 & 10 & 6 & 8 & 6 & 199 \\
     \bottomrule
     \end{tabular}
     \captionof{table}{Confusion matrix for the training dataset.}
     \label{tab:confusion_matrix_train}
     \end{center}
     
-    \begin{center}
+    
+\begin{center}
     \textbf{Confusion Matrix for Test}
     
     \begin{tabular}{c|ccccccc}
@@ -378,18 +379,19 @@ Also, I visualize the confusion matrix in the figure \ref{fig:confusion_matrix_t
     \cmidrule(lr){2-8}
     True Labels & dog & elephant & giraffe & guitar & horse & house & person \\
     \midrule
-    dog & 119 & 4 & 96 & 48 & 51 & 50 & 38 \\
-    elephant & 124 & 11 & 63 & 47 & 52 & 40 & 33 \\
-    giraffe & 106 & 4 & 129 & 90 & 30 & 45 & 20 \\
-    guitar & 102 & 5 & 52 & 79 & 45 & 19 & 38 \\
-    horse & 110 & 2 & 73 & 50 & 83 & 38 & 26 \\
-    house & 83 & 4 & 88 & 28 & 33 & 131 & 19 \\
-    person & 119 & 5 & 79 & 39 & 40 & 25 & 105 \\
+    dog & 66 & 58 & 72 & 56 & 58 & 56 & 41 \\
+    elephant & 67 & 78 & 47 & 48 & 53 & 44 & 33 \\
+    giraffe & 67 & 45 & 109 & 90 & 35 & 57 & 22 \\
+    guitar & 68 & 40 & 35 & 84 & 53 & 19 & 40 \\
+    horse & 66 & 48 & 52 & 51 & 100 & 39 & 26 \\
+    house & 82 & 9 & 65 & 30 & 34 & 142 & 23 \\
+    person & 122 & 10 & 64 & 30 & 50 & 30 & 106 \\
     \bottomrule
     \end{tabular}
     \captionof{table}{Confusion matrix for the testing dataset.}
     \label{tab:confusion_matrix_test}
-\end{center}
+    \end{center}
+        
 
 % import confusion matrix
 \begin{figure}[h!]
@@ -617,7 +619,7 @@ In figure \ref{fig:label_style}, we can see the example of images with labels an
 After 300 epochs, the cross-entropy loss is 0.884.
 
 \subsubsection*{[Q17]}
-The accuracy of training dataset is 0.660, and the accuracy of testing dataset is 0.262.
+The accuracy of training dataset is 0.670, and the accuracy of testing dataset is 0.265.
 
 The confusion matrix is shown in the table \ref{tab:confusion_matrix_train_aug} and table \ref{tab:confusion_matrix_test_aug}.
 
@@ -632,20 +634,23 @@ Also, I visualize the confusion matrix in the figure \ref{fig:confusion_matrix_t
     \cmidrule(lr){2-8}
     True Labels & dog & elephant & giraffe & guitar & horse & house & person \\
     \midrule
-    dog & 361 & 12 & 24 & 22 & 16 & 7 & 13 \\
-    elephant & 261 & 82 & 23 & 28 & 14 & 22 & 20 \\
-    giraffe & 17 & 6 & 338 & 28 & 19 & 23 & 32 \\
-    guitar & 33 & 17 & 63 & 204 & 9 & 14 & 9 \\
-    horse & 18 & 4 & 36 & 18 & 274 & 26 & 26 \\
-    house & 22 & 3 & 15 & 4 & 11 & 377 & 17 \\
-    person & 22 & 0 & 31 & 14 & 8 & 17 & 348 \\
+    dog & 320 & 61 & 19 & 23 & 16 & 7 & 11 \\
+    elephant & 188 & 170 & 18 & 26 & 14 & 16 & 19 \\
+    giraffe & 19 & 13 & 318 & 31 & 26 & 20 & 34 \\
+    guitar & 31 & 24 & 44 & 208 & 15 & 11 & 14 \\
+    horse & 12 & 11 & 28 & 21 & 281 & 20 & 31 \\
+    house & 22 & 7 & 12 & 3 & 11 & 368 & 21 \\
+    person & 20 & 5 & 22 & 14 & 13 & 19 & 351 \\
     \bottomrule
     \end{tabular}
     \captionof{table}{Confusion matrix for the training dataset.}
     \label{tab:confusion_matrix_train_aug}
-    \end{center}
+\end{center}
     
-    \begin{center}
+    
+
+    
+\begin{center}
     \textbf{Confusion Matrix for Test}
     
     \begin{tabular}{c|ccccccc}
@@ -654,18 +659,19 @@ Also, I visualize the confusion matrix in the figure \ref{fig:confusion_matrix_t
     \cmidrule(lr){2-8}
     True Labels & dog & elephant & giraffe & guitar & horse & house & person \\
     \midrule
-    dog & 132 & 7 & 75 & 56 & 43 & 51 & 43 \\
-    elephant & 142 & 23 & 52 & 46 & 41 & 31 & 35 \\
-    giraffe & 111 & 12 & 153 & 51 & 31 & 42 & 25 \\
-    guitar & 107 & 16 & 49 & 77 & 39 & 27 & 24 \\
-    horse & 107 & 17 & 54 & 38 & 100 & 42 & 24 \\
-    house & 100 & 10 & 54 & 33 & 42 & 123 & 23 \\
-    person & 124 & 10 & 51 & 42 & 48 & 33 & 104 \\
+    dog & 125 & 17 & 62 & 64 & 54 & 43 & 42 \\
+    elephant & 109 & 64 & 46 & 44 & 46 & 29 & 31 \\
+    giraffe & 100 & 24 & 136 & 68 & 35 & 38 & 23 \\
+    guitar & 99 & 27 & 41 & 80 & 46 & 26 & 21 \\
+    horse & 86 & 37 & 48 & 46 & 105 & 38 & 21 \\
+    house & 103 & 11 & 50 & 32 & 48 & 120 & 22 \\
+    person & 127 & 13 & 54 & 38 & 59 & 30 & 92 \\
     \bottomrule
     \end{tabular}
     \captionof{table}{Confusion matrix for the testing dataset.}
     \label{tab:confusion_matrix_test_aug}
 \end{center}
+        
     
 \begin{figure}[h!]
     \centering
