@@ -110,5 +110,121 @@ Therefore, we need to use the content loss and style loss to balance the style t
 
 After 55 epochs, total loss is 13021.544, content loss is 8052.103, and style loss is 4969.441.
 
+\subsubsection*{[Q8]}
+
+From the figure \ref{fig:part1_inference}, we can see the style transfer examples.
+In these comparisons, we can see that the generated images represented the content of the content images very well expect the words in them.
+For the style, the generated images are very similar to the style images in color and painting techniques.
+However, if the style is very different from the content, the generated images may not be very good (e.g.: picture l).
+Moreover, the generated images have some strange textures in some areas, which may be caused by the imbalance of the style data set, i.e., there are too many paintings in the training set.
+
+% input images in a 3*2 grid
+\begin{figure}[ht]
+    \centering
+    % First row of subfigures
+    \begin{minipage}{\textwidth}
+        \centering
+        \begin{subfigure}{0.25\textwidth}
+            \includegraphics[width=\textwidth]{./data_set/HKUST/1.jpg}
+            \caption{Content Image}
+        \end{subfigure}
+        \hfill % This command adds space between the subfigures
+        \begin{subfigure}{0.25\textwidth}
+            \includegraphics[width=\textwidth]{./wikiart/Symbolism/konstantin-bogaevsky_port-of-imaginary-city-1932.jpg}
+            \caption{Style Image}
+        \end{subfigure}
+        \hfill % This command adds space between the subfigures
+        \begin{subfigure}{0.25\textwidth}
+            \includegraphics[width=\textwidth]{./part1_inference/output_1_konstantin-bogaevsky_port-of-imaginary-city-1932.jpg}
+            \caption{Generated Image}
+        \end{subfigure}
+    \end{minipage}
+    
+    \vspace{0.1cm} % This command adds vertical space between the rows
+    
+    % Second row of subfigures
+    \begin{minipage}{\textwidth}
+        \centering
+        \begin{subfigure}{0.25\textwidth}
+            \includegraphics[width=\textwidth]{./data_set/HKUST/2.jpg}
+            \caption{Content Image}
+        \end{subfigure}
+        \hfill % This command adds space between the subfigures
+        \begin{subfigure}{0.25\textwidth}
+            \includegraphics[width=\textwidth]{./wikiart/Realism/camille-corot_toulon-battleships-dismantled.jpg}
+            \caption{Style Image}
+        \end{subfigure}
+        \hfill % This command adds space between the subfigures
+        \begin{subfigure}{0.25\textwidth}
+            \includegraphics[width=\textwidth]{./part1_inference/output_2_camille-corot_toulon-battleships-dismantled.jpg}
+            \caption{Generated Image}
+        \end{subfigure}
+    \end{minipage}
+    
+    \vspace{0.1cm}
+
+    \begin{minipage}{\textwidth}
+        \centering
+        \begin{subfigure}{0.25\textwidth}
+            \includegraphics[width=\textwidth]{./data_set/HKUST/3.jpg}
+            \caption{Content Image}
+        \end{subfigure}
+        \hfill % This command adds space between the subfigures
+        \begin{subfigure}{0.25\textwidth}
+            \includegraphics[width=\textwidth]{./wikiart/Post_Impressionism/vincent-van-gogh_red-vineyards-at-arles-1888.jpg}
+            \caption{Style Image}
+        \end{subfigure}
+        \hfill % This command adds space between the subfigures
+        \begin{subfigure}{0.25\textwidth}
+            \includegraphics[width=\textwidth]{./part1_inference/output_3_vincent-van-gogh_red-vineyards-at-arles-1888.jpg}
+            \caption{Generated Image}
+        \end{subfigure}
+    \end{minipage}
+    
+    \vspace{0.1cm}
+
+    \begin{minipage}{\textwidth}
+        \centering
+        \begin{subfigure}{0.25\textwidth}
+            \includegraphics[width=\textwidth]{./data_set/HKUST/6.jpeg}
+            \caption{Content Image}
+        \end{subfigure}
+        \hfill % This command adds space between the subfigures
+        \begin{subfigure}{0.25\textwidth}
+            \includegraphics[width=\textwidth]{./wikiart/Art_Nouveau_Modern/boris-kustodiev_under-honey-s-harmonica-1927.jpg}
+            \caption{Style Image}
+        \end{subfigure}
+        \hfill % This command adds space between the subfigures
+        \begin{subfigure}{0.25\textwidth}
+            \includegraphics[width=\textwidth]{./part1_inference/output_6_boris-kustodiev_under-honey-s-harmonica-1927.jpg}
+            \caption{Generated Image}
+        \end{subfigure}
+    \end{minipage}
+    
+    \vspace{0.1cm}
+
+    \begin{minipage}{\textwidth}
+        \centering
+        \begin{subfigure}{0.25\textwidth}
+            \includegraphics[width=\textwidth]{./data_set/HKUST/14.jpeg}
+            \caption{Content Image}
+        \end{subfigure}
+        \hfill % This command adds space between the subfigures
+        \begin{subfigure}{0.25\textwidth}
+            \includegraphics[width=\textwidth]{./wikiart/Early_Renaissance/sandro-botticelli_crucifixion(1).jpg}
+            \caption{Style Image}
+        \end{subfigure}
+        \hfill % This command adds space between the subfigures
+        \begin{subfigure}{0.25\textwidth}
+            \includegraphics[width=\textwidth]{./part1_inference/output_14_sandro-botticelli_crucifixion(1).jpg}
+            \caption{Generated Image}
+        \end{subfigure}
+    \end{minipage}    
+    
+    \caption{Example of Style Transfer}
+    \label{fig:part1_inference}
+\end{figure}
+
+
 
 \end{document}

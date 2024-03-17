@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2024.3.17)  17 MAR 2024 11:30
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2024.3.17)  17 MAR 2024 14:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -336,18 +336,48 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 ]
+File: ./data_set/HKUST/1.jpg Graphic file (type bmp)
+<./data_set/HKUST/1.jpg>
+File: ./wikiart/Symbolism/konstantin-bogaevsky_port-of-imaginary-city-1932.jpg Graphic file (type bmp)
+<./wikiart/Symbolism/konstantin-bogaevsky_port-of-imaginary-city-1932.jpg>
+File: ./part1_inference/output_1_konstantin-bogaevsky_port-of-imaginary-city-1932.jpg Graphic file (type bmp)
+<./part1_inference/output_1_konstantin-bogaevsky_port-of-imaginary-city-1932.jpg>
+File: ./data_set/HKUST/2.jpg Graphic file (type bmp)
+<./data_set/HKUST/2.jpg>
+File: ./wikiart/Realism/camille-corot_toulon-battleships-dismantled.jpg Graphic file (type bmp)
+<./wikiart/Realism/camille-corot_toulon-battleships-dismantled.jpg>
+File: ./part1_inference/output_2_camille-corot_toulon-battleships-dismantled.jpg Graphic file (type bmp)
+<./part1_inference/output_2_camille-corot_toulon-battleships-dismantled.jpg>
+File: ./data_set/HKUST/3.jpg Graphic file (type bmp)
+<./data_set/HKUST/3.jpg>
+File: ./wikiart/Post_Impressionism/vincent-van-gogh_red-vineyards-at-arles-1888.jpg Graphic file (type bmp)
+<./wikiart/Post_Impressionism/vincent-van-gogh_red-vineyards-at-arles-1888.jpg>
+File: ./part1_inference/output_3_vincent-van-gogh_red-vineyards-at-arles-1888.jpg Graphic file (type bmp)
+<./part1_inference/output_3_vincent-van-gogh_red-vineyards-at-arles-1888.jpg>
+File: ./data_set/HKUST/6.jpeg Graphic file (type bmp)
+<./data_set/HKUST/6.jpeg>
+File: ./wikiart/Art_Nouveau_Modern/boris-kustodiev_under-honey-s-harmonica-1927.jpg Graphic file (type bmp)
+<./wikiart/Art_Nouveau_Modern/boris-kustodiev_under-honey-s-harmonica-1927.jpg>
+File: ./part1_inference/output_6_boris-kustodiev_under-honey-s-harmonica-1927.jpg Graphic file (type bmp)
+<./part1_inference/output_6_boris-kustodiev_under-honey-s-harmonica-1927.jpg>
+File: ./data_set/HKUST/14.jpeg Graphic file (type bmp)
+<./data_set/HKUST/14.jpeg>
+File: ./wikiart/Early_Renaissance/sandro-botticelli_crucifixion(1).jpg Graphic file (type bmp)
+<./wikiart/Early_Renaissance/sandro-botticelli_crucifixion(1).jpg>
+File: ./part1_inference/output_14_sandro-botticelli_crucifixion(1).jpg Graphic file (type bmp)
+<./part1_inference/output_14_sandro-botticelli_crucifixion(1).jpg>
 
-Package caption Warning: Unused \captionsetup[sub] on input line 13.
-See the caption package documentation for explanation.
 
-[2] (./pa2_report.aux) ) 
+LaTeX Warning: Float too large for page by 83.49873pt on input line 226.
+
+[2] [3] (./pa2_report.aux) ) 
 Here is how much of TeX's memory you used:
- 7144 strings out of 478190
- 115221 string characters out of 5854813
- 433462 words of memory out of 5000000
- 27669 multiletter control sequences out of 15000+600000
- 476349 words of font info for 63 fonts, out of 8000000 for 9000
+ 7290 strings out of 478190
+ 122628 string characters out of 5854813
+ 433470 words of memory out of 5000000
+ 27788 multiletter control sequences out of 15000+600000
+ 476357 words of font info for 64 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 67i,6n,77p,347b,261s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 67i,9n,77p,347b,530s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on pa2_report.pdf (2 pages).
+Output written on pa2_report.pdf (3 pages).
