@@ -21,7 +21,10 @@ PA2/wikiart
 PA2/part1_inference_output
 PA2/pa2_report.aux
 PA2/pa2_report.log
+PA2/pa2_report.out
 PA2/pa2_report.synctex.gz
 PA2/pa2_report.pdf
 PA2/classify_saved
 PA2/acc
+PA2/latex.py
+PA2/classify-augmentation
