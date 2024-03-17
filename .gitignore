@@ -16,4 +16,6 @@ PA2/data_set
 PA2/__MACOSX
 PA2/classify
 PA2/COCO
+PA2/saved_model
 PA2/wikiart
+PA2/part1_inference

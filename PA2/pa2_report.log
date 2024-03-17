@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2024.3.15)  15 MAR 2024 17:19
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2024.3.17)  17 MAR 2024 11:30
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -36,7 +36,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 Package: babel 2022/01/26 3.70 The Babel package
 \babel@savecnt=\count189
 \U@D=\dimen139
-\l@unhyphenated=\language87
+\l@unhyphenated=\language3
  (/usr/share/texlive/texmf-dist/tex/generic/babel/xebabel.def (/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def))
 \bbl@readstream=\read2
 \bbl@dirlevel=\count190
@@ -44,7 +44,7 @@ Package babel Info: You haven't specified a language. I'll use 'nil'
 (babel)             as the main language. Reported on input line 4299.
  (/usr/share/texlive/texmf-dist/tex/generic/babel/nil.ldf
 Language: nil 2022/01/26 3.70 Nil language
-\l@nil=\language88
+\l@nil=\language4
 )) (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
  (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
@@ -342,12 +342,12 @@ See the caption package documentation for explanation.
 
 [2] (./pa2_report.aux) ) 
 Here is how much of TeX's memory you used:
- 7144 strings out of 476191
- 115222 string characters out of 5812072
- 438744 words of memory out of 5000000
- 27802 multiletter control sequences out of 15000+600000
+ 7144 strings out of 478190
+ 115221 string characters out of 5854813
+ 433462 words of memory out of 5000000
+ 27669 multiletter control sequences out of 15000+600000
  476349 words of font info for 63 fonts, out of 8000000 for 9000
- 1348 hyphenation exceptions out of 8191
+ 14 hyphenation exceptions out of 8191
  67i,6n,77p,347b,261s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on pa2_report.pdf (2 pages).
