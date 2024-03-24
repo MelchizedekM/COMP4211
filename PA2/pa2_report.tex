@@ -249,6 +249,8 @@ we can see that the training and testing dataset distributions are very similar 
 The ratios of training samples of house and guitar are less than the testing samples.
 And the number of training samples of each class is a half of the testing samples.
 
+Moreover, the highest different between training and testing samples is that there are many type-animal pair only were shown a little in the training dataset but shown a lot in the testing dataset.
+
 
 \begin{table}[h]
     \centering
@@ -290,6 +292,9 @@ And the number of training samples of each class is a half of the testing sample
 \subsubsection*{[Q10]}
 Since horse and guitar have less training samples, the model may not be able-learn the features of these two classes very well.
 Therefore, the model may not be able-classify the horse and guitar very well.
+
+Also, since the imbalance of training samples, the model may not be able-classify some type-animal pairs very well. For example, since the number of art\_painting-dog is small in the training dataset, the model may not be able-classify the art\_painting-dog very well.
+
 
 \subsection*{7.3 Model Implementation}
 
@@ -418,6 +423,8 @@ Also, I visualize the confusion matrix in the figure \ref{fig:confusion_matrix_t
 The figure \ref{fig:misclassified} shows the misclassified images.
 These figures show that the model may not be able to classify those images with complex backgrounds and multiple objects very well.
 Also, they may be too vague, concise and unconventional.
+
+Moreover, most of these misclassified data are coming from those type-animal pairs that have less training samples, such as cartoon-dog.
 
 \begin{center}
     \noindent 
