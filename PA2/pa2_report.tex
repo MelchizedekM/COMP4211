@@ -15,6 +15,8 @@
 \usepackage{xcolor}
 \usepackage{array}
 \usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{tabularx}
 
 
 \definecolor{codegray}{gray}{0.9}
@@ -251,25 +253,47 @@ And the number of training samples of each class is a half of the testing sample
 
 Moreover, the highest different between training and testing samples is that there are many type-animal pair only were shown a little in the training dataset but shown a lot in the testing dataset.
 
-
-\begin{table}[h]
+\begin{table}[ht]
     \centering
-    \begin{tabular}{lcc}
-    \toprule
-    Label & Train Count & Test Count \\
-    \midrule
-    Giraffe   & 265 & 425 \\
-    Dog       & 262 & 407 \\
-    Elephant  & 256 & 370 \\
-    House     & 251 & 386 \\
-    Person    & 247 & 413 \\
-    Horse     & 210 & 382 \\
-    Guitar    & 150 & 340 \\
-    \bottomrule
-    \end{tabular}
-    \caption{Comparison of training and testing dataset distributions.}
+    \caption{Combined Training and Test Data Counts}
     \label{tab:dataset_distribution}
-\end{table}
+    \begin{tabular}{llrr}
+        \toprule
+        \multicolumn{2}{c}{Category} & \multicolumn{1}{c}{Training Count} & \multicolumn{1}{c}{Test Count} \\
+        \cmidrule(lr){1-2} \cmidrule(lr){3-3} \cmidrule(lr){4-4}
+        Label Type & Label Animal & Count & Count \\
+        \midrule
+        art\_painting & dog & 13 & 119 \\
+        art\_painting & elephant & 13 & 89 \\
+        art\_painting & giraffe & 231 & 110 \\
+        art\_painting & guitar & 10 & 82 \\
+        art\_painting & horse & 180 & 90 \\
+        art\_painting & house & 11 & 110 \\
+        art\_painting & person & 11 & 96 \\
+        cartoon & dog & 10 & 95 \\
+        cartoon & elephant & 13 & 83 \\
+        cartoon & giraffe & 12 & 109 \\
+        cartoon & guitar & 121 & 82 \\
+        cartoon & horse & 11 & 81 \\
+        cartoon & house & 12 & 101 \\
+        cartoon & person & 12 & 95 \\
+        photo & dog & 10 & 81 \\
+        photo & elephant & 13 & 83 \\
+        photo & giraffe & 12 & 102 \\
+        photo & guitar & 10 & 81 \\
+        photo & horse & 11 & 103 \\
+        photo & house & 215 & 95 \\
+        photo & person & 211 & 110 \\
+        sketch & dog & 229 & 112 \\
+        sketch & elephant & 217 & 115 \\
+        sketch & giraffe & 10 & 104 \\
+        sketch & guitar & 9 & 95 \\
+        sketch & horse & 8 & 108 \\
+        sketch & house & 13 & 80 \\
+        sketch & person & 13 & 112 \\
+        \bottomrule
+    \end{tabular}
+    \end{table}
 
 % input images for training and testing
 \begin{figure}[h!]
