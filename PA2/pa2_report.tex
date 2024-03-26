@@ -103,7 +103,7 @@ Based on the print out of the code (figure \ref{fig:trainable_parameters}), we c
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=\textwidth]{./pic/trainable_para_model1.jpg}
+    \includegraphics[width=\textwidth]{./pic/trainable_para_model1.png}
     \caption{trainable parameters of the model.}
     \label{fig:trainable_parameters}
 \end{figure}
@@ -325,13 +325,14 @@ Also, since the imbalance of training samples, the model may not be able-classif
 
 \subsubsection*{[Q11]}
 
-For each layer, we have the trainable parameters as follows:
-\begin{itemize}
-    \item Dense Layer: $(n_{in} + 1) \times n_{out}$
-    \item Pooling: 0
-\end{itemize}
+Based on the output of the code (figure \ref{fig:trainable_parameters_class}), we can find the trainable parameters of the model is 5609031.
 
-Therefore, the total number of trainable parameters is 2103303.
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\textwidth]{./pic/trainable_para_model2.png}
+    \caption{trainable parameters of the model.}
+    \label{fig:trainable_parameters_class}
+\end{figure}
 
 
 \subsection*{7.4 Training the Classification model}
