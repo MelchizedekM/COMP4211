@@ -99,13 +99,14 @@ Since after encoding, the image is represented as a 3D tensor and its 2D shape i
 Therefore, in the decoder, we need the upsampling-re-construct the image-its original size.
 
 \subsubsection*{[Q4]}
-For each layer, we have the trainable parameters as follows:
-\begin{itemize}
-    \item Conv2d: $(k \times k \times c_{in} + 1) \times c_{out}$
-    \item Pooling and Upsampling: 0
-\end{itemize}
+Based on the print out of the code (figure \ref{fig:trainable_parameters}), we can find the trainable parameters of the model is 3505219.
 
-Therefore, the total number of trainable parameters is 2332511.
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\textwidth]{./pic/trainable_para_model1.jpg}
+    \caption{trainable parameters of the model.}
+    \label{fig:trainable_parameters}
+\end{figure}
 
 \subsubsection*{[Q5]}
 Since the we need encoder-encode the image and mine the features, but if we only use the encoder, we cannot re-construct the image. 
@@ -762,15 +763,13 @@ which can help the model learn more features and be more robust.
 
 Moreover, the augmented dataset can help the model learn the features of those type-animal pairs that have less training samples.
 
-The figure \ref{fig:label_style_aug} shows the example of images with labels and styles after augmentation.
+The figure \ref{fig:class_distribution_aug} shows the example of images with labels and styles after augmentation.
 
 
-\begin{figure}
+\begin{figure}[!ht]
     \centering
-    \begin{subfigure}{\textwidth}
-        \includegraphics[width=\textwidth]{./pic/class_distribution_3041.png}
-        \caption{Class Distribution After Augmentation}
-    \end{subfigure}
+    \includegraphics[width=\textwidth]{./pic/class_distribution_3041.png}
+    \caption{Class Distribution After Augmentation}
     \label{fig:class_distribution_aug}
 \end{figure}
 
